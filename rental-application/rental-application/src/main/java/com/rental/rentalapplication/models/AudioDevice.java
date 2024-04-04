@@ -10,10 +10,24 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @Entity
 @Table(name="audio_devices")
 public class AudioDevice {
+	public AudioDevice(String speakersPower, int numberOfspeakers, String frequencyResponse, String connectionType,
+			String headphoneType, boolean microphone, int workingTime, boolean wirelessTransmission,
+			List<Device> devices) {
+		super();
+		this.speakersPower = speakersPower;
+		this.numberOfspeakers = numberOfspeakers;
+		this.frequencyResponse = frequencyResponse;
+		this.connectionType = connectionType;
+		this.headphoneType = headphoneType;
+		this.microphone = microphone;
+		this.workingTime = workingTime;
+		this.wirelessTransmission = wirelessTransmission;
+		this.devices = devices;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

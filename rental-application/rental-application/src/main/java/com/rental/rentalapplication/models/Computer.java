@@ -18,10 +18,20 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
+
 @Entity
 @Table(name="computers_and_tablets")
 public class Computer {
+	public Computer(@NotNull String display, @NotNull String procesor, @NotNull String drive, @NotNull int ram,
+			String graphicsCard, @NotNull String operatingSystem) {
+		super();
+		this.display = display;
+		this.procesor = procesor;
+		this.drive = drive;
+		this.ram = ram;
+		this.graphicsCard = graphicsCard;
+		this.operatingSystem = operatingSystem;
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

@@ -21,10 +21,16 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @Entity
 @Table(name="users")
 public class User {
+
+	public User(@NotNull String email, @NotNull String password, @NotNull String accountType) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.accountType = accountType;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

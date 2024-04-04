@@ -17,10 +17,15 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
+
 @Entity
 @Table(name="connectors")
 public class Connector {
+	public Connector(@NotNull String name) {
+		super();
+		this.name = name;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

@@ -21,10 +21,24 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @Entity
 @Table(name="rentals")
 public class Rental {
+	public Rental(@NotNull LocalDate rentalStartDate, @NotNull LocalDate rentalEndDate, @NotNull String rentalStatus,
+			@NotNull String deliveryMethod, @NotNull String paymentMethod, User user, List<DeviceRental> deviceRentals,
+			List<Invoice> invoices) {
+		super();
+		this.rentalStartDate = rentalStartDate;
+		this.rentalEndDate = rentalEndDate;
+		this.rentalStatus = rentalStatus;
+		this.deliveryMethod = deliveryMethod;
+		this.paymentMethod = paymentMethod;
+		this.user = user;
+		this.deviceRentals = deviceRentals;
+		this.invoices = invoices;
+	}
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

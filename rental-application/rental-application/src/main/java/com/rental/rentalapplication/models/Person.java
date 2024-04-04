@@ -15,10 +15,16 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @Entity
 @Table(name="persons")
 public class Person {
+	public Person(@NotNull String firstName, @NotNull String surname, @NotNull String phoneNumber) {
+		super();
+		this.firstName = firstName;
+		this.surname = surname;
+		this.phoneNumber = phoneNumber;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

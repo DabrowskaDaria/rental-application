@@ -19,10 +19,26 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @Entity
 @Table(name="devices")
 public class Device {
+	public Device(Category category, Computer computer, ImageDisplay imageDisplay, Camera camera,
+			AudioDevice audioDevice, Lighting lighting, @NotNull String name, @NotNull int price, @NotNull int deposit,
+			@NotNull String description, List<DeviceConnector> deviceConnector) {
+		super();
+		this.category = category;
+		this.computer = computer;
+		this.imageDisplay = imageDisplay;
+		this.camera = camera;
+		this.audioDevice = audioDevice;
+		this.lighting = lighting;
+		this.name = name;
+		this.price = price;
+		this.deposit = deposit;
+		this.description = description;
+		this.deviceConnector = deviceConnector;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

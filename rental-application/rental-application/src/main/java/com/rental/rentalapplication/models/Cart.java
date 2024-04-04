@@ -18,7 +18,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
+
 @Entity
 @Table(name="carts")
 public class Cart {

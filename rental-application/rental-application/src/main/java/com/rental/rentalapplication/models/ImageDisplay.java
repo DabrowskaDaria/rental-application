@@ -10,10 +10,22 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
+
 @Entity
 @Table(name="image_display")
 public class ImageDisplay {
+	public ImageDisplay(String screenSize, String screenResolution, int refreshRate, String screenFormat,
+			String activeSurface, String matrixType, int lampPower) {
+		super();
+		this.screenSize = screenSize;
+		this.screenResolution = screenResolution;
+		this.refreshRate = refreshRate;
+		this.screenFormat = screenFormat;
+		this.activeSurface = activeSurface;
+		this.matrixType = matrixType;
+		this.lampPower = lampPower;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

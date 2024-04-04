@@ -11,10 +11,18 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @Table(name="lighting")
 @Entity
 public class Lighting {
+	public Lighting(@NotNull String lightingColor, @NotNull int powerConsumption, @NotNull int lampPower,
+			@NotNull String deviceSize) {
+		super();
+		this.lightingColor = lightingColor;
+		this.powerConsumption = powerConsumption;
+		this.lampPower = lampPower;
+		this.deviceSize = deviceSize;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

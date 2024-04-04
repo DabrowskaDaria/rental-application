@@ -21,6 +21,16 @@ import lombok.Setter;
 @Table(name="invoices")
 @Entity
 public class Invoice {
+	public Invoice(@NotNull LocalDate invoiceDate, @NotNull int price, @NotNull int deposit,
+			@NotNull String invoiceType, Rental rental) {
+		super();
+		this.invoiceDate = invoiceDate;
+		this.price = price;
+		this.deposit = deposit;
+		this.invoiceType = invoiceType;
+		this.rental = rental;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

@@ -17,11 +17,23 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
+
 @Entity
 @Table(name="companies")
 public class Company {
 	
+	public Company(String name, String comnapyNumber, String place, String street, int buldingNumber, String zipCode,
+			List<User> users) {
+		super();
+		this.name = name;
+		this.comnapyNumber = comnapyNumber;
+		this.place = place;
+		this.street = street;
+		this.buldingNumber = buldingNumber;
+		this.zipCode = zipCode;
+		this.users = users;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

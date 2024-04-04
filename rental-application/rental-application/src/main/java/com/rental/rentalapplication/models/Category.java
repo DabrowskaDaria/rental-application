@@ -9,6 +9,11 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 @Table(name="device_categories")
 public class Category {
+	public Category(@NotNull String name) {
+		super();
+		this.name = name;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

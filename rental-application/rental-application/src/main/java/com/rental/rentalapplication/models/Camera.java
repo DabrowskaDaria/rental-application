@@ -17,10 +17,18 @@ import lombok.Getter;
 import lombok.Setter;
 @Getter
 @Setter
-@AllArgsConstructor
 @Entity
 @Table(name="camera")
 public class Camera {
+	public Camera(@NotNull String resolution, @NotNull boolean imageStabilization, @NotNull boolean opticalZoom,
+			List<Device> devices) {
+		super();
+		this.resolution = resolution;
+		this.imageStabilization = imageStabilization;
+		this.opticalZoom = opticalZoom;
+		this.devices = devices;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
