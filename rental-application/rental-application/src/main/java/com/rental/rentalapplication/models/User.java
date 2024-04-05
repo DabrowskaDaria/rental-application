@@ -25,11 +25,10 @@ import lombok.Setter;
 @Table(name="users")
 public class User {
 
-	public User(@NotNull String email, @NotNull String password, @NotNull String accountType) {
+	public User(@NotNull String email, @NotNull String password) {
 		super();
 		this.email = email;
 		this.password = password;
-		this.accountType = accountType;
 	}
 
 	@Id
@@ -48,7 +47,7 @@ public class User {
 	private String password;
 	
 	@Column(name="account_type")
-	@NotNull
+	
 	private String accountType;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
