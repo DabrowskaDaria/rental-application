@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj urządzenie</title>
+    <link rel="stylesheet" th:href="@{/css/addDevice.css}" type="text/css">
+</head>
+<body>
+    <div class="addDevice">
+        <form action="@{/addDevice}" method="post" th:object="${addDeviceForm}">
+            <h2>Dodaj urządzenie</h2>
+            <div class="choose-category">
+                <select id="category" name="category" onchange="changeTechnicalDataFields()" name="category" th:field="*{category}">
+                    <option th:value="${category.name}" th:text="${category.name}">Telewizor</option>
+                                        
+                </select>
+            </div>
+            <div id="showTechnicalData">
+
+            </div>
+            <div class="addDevice-input">
+                <input type="text"  placeholder="Nazwa" th:field="${deviceDto.name}">
+            </div>
+            <div class="addDevice-input">
+                <input type="number" min="0" step="1" placeholder="Cena" th:field="${deviceDto.price}">
+            </div>
+            <div class="addDevice-input">
+                <input type="number" min="0" step="1" placeholder="Kaucja" th:field="${deviceDto.deposit}">
+            </div>
+            <div class="addDevice-textarea">
+                <textarea placeholder="Podaj opis"></textarea>
+            </div>
+            <div class="choose-connector">
+                <select>
+                    <option value="hdmi">HDMI</option>
+                    <option value="usb">USB</option>
+                    <option value="ethernet">Ethernet</option>
+                    <option value="jack">Combo jack</option>
+                    <option value="brak">Brak</option>
+                </select>
+            </div>
+            <div class="addDevice-button">
+                <button type="submit">Dodaj urządzenie</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function changeTechnicalDataFields(){
+            var category=document.getElementById('category').value;
+            var technicalDataFields=document.getElementById('showTechnicalData');
+            technicalDataFields.innerHTML='';
+
+            if(category=='tv'){
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Rozdzielczość" th:field="*{technicalData["screenResolution"]}></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Rozmiar ekranu" name="screenSize"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="number" min="0" step="1" placeholder="Częstotliwość odświeżania" name="refreshRate"></div>';
+            }else if(category=='laptop'){
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Ekran" name="display"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Procesor" name="processor"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Dysk" name="drive"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="number" min="0" step="1" placeholder="RAM" name="ram"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Karta graficzna" name="graphicCard"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="System operacyjny" name="operatingSystem"></div>';
+            }else if(category=='monitor'){
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Rozdzielczość" name="screenResolution"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Rozmiar ekranu" name="screenSize"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="number" min="0" step="1" placeholder="Częstotliwość odświeżania" name="refreshRate"></div>';
+            }else if(category=='audio'){
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Moc głośników" name="speakresPower"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="number" min="0" step="1" placeholder="Ilość głośników" name="numberOfSpeakers"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Typ podłączenia" name="connectionType"></div>';
+            }else if(category=='projector'){
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Typ matrycy" name="matrixType"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="number" min="0" step="1" placeholder="Moc lampy" name="lampPower"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Rozdzielczość" name="screenResolution"></div>';
+            }else if(category=='screen'){
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Format" name="format"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Rozmiar" name="screenSize"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Wymiar powierzchni aktywnej" name="activeSurfaceac"></div>';
+            }else if(category=='lighting'){
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Kolor światła" name="lightingColor"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="number" min="0" step="1" placeholder="Pobór prądu" name="powerConsumption"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Wielkość urządzenia" name="deviceSize"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="number" min="0" step="1" placeholder="moc lampy" name="lampPower"></div>';
+            }else if(category=='headphones'){
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Typ Słuchawek" name="headphoneType"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Mikrofon" name="microphone"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Bezprzewodowe" name="wirelessTransmission"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="number" min="0" step="1" placeholder="Czas pracy" name="workingTime"></div>';
+            }else if(category=='tablet'){
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="System operacyjny" name="operatingSystem"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Dysk" name="drive"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="number" min="0" step="1" placeholder="RAM" name="ram"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Procesor" name="processor"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Wyświetlacz" name="display"></div>';
+            }else if(category=='camera'){
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Rozdzielczość" name="resolution"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Stabilizacja obrazu" name="imageStabilization"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Zbliżenie optyczne" name="opticalZoom"></div>';
+            }else if(category=="microphone"){
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Rodzaj mikrofonu" name="microphoneType"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Pasmo przenoszenia" name="frequencyResponse"></div>';
+                technicalDataFields.innerHTML+='<div class="addDevice-input"><input type="text" placeholder="Typ podłączenia" name="wirelessTransmision"></div>';
+            }
+    }
+    </script>
+</body>
+</html>
