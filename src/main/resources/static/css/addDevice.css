@@ -1,0 +1,113 @@
+*{
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    min-height: 100vh;
+}
+
+.addDevice{
+    width: 600px;
+    background-color:rgb(219, 188, 247);
+    border-radius: 10px;
+    padding: 20px 40px;
+    border: 2px solid rgba(255,255,255,.2);
+}
+
+.addDevice h2{
+    font-size: 40px;
+    text-align: center;
+}
+
+.addDevice .addDevice-input{
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+}
+.addDevice .choose-category{
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.choose-category select{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255,255,255,.2);
+    border-radius: 20px;
+    padding: 10px;
+}
+.addDevice .addDevice-input input{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255,255,255,.2);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.addDevice-input input::placeholder{
+    color: black;
+}
+
+.addDevice .addDevice-textarea{
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+}
+
+.addDevice-textarea textarea{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255,255,255,.2);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.addDevice-textarea textarea::placeholder{
+    color: black;
+}
+
+.addDevice .choose-connector{
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.choose-connector select{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255,255,255,.2);
+    border-radius: 20px;
+    padding: 10px;
+}
+.addDevice .addDevice-button{
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    margin-top: 10px;
+}
+.addDevice-button button{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(167, 120, 207);
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    border: 2px solid rgba(255,255,255,.2);
+    font-size: 18px;
+}
