@@ -14,6 +14,8 @@ import com.rental.rentalapplication.Models.User;
 import com.rental.rentalapplication.Repository.PersonRepository;
 import com.rental.rentalapplication.Repository.UserRepository;
 
+import jakarta.validation.Valid;
+
 @Service
 public class UserManager {
 

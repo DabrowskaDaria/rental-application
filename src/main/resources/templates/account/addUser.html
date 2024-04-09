@@ -9,17 +9,34 @@
 
     <form method="post" action="/account/add" th:object="${userPersonDto}">
         <h2>Dodaj użytkownika</h2>
-        <input type="text" placeholder="Imię" required th:field="${userPersonDto.firstName}">
-        <input type="text" placeholder="Nazwisko" required th:field="${userPersonDto.surname}">
-        <input type="tel" placeholder="Numer telefonu" required th:field="${userPersonDto.phoneNumber}">
-        <input type="email" placeholder="E-mail" required th:field="${userPersonDto.email}">
-        <input type="password" placeholder="Hasło" required th:field="${userPersonDto.password}">
+        <div>
+			<input type="text" placeholder="Imię"  th:field="${userPersonDto.firstName}">
+			<p th:if="${#fields.hasErrors('firstName')}"  th:errors="${userPersonDto.firstName}"></p>
+		</div>
+		<div>
+			<input type="text" placeholder="Nazwisko"  th:field="${userPersonDto.surname}">
+			<p th:if="${#fields.hasErrors('surname')}" th:errors="${userPersonDto.surname}"></p>
+		</div>
+        <div>
+			<input type="tel" placeholder="Numer telefonu"  th:field="${userPersonDto.phoneNumber}">
+			<p th:if="${#fields.hasErrors('phoneNumber')}"  th:errors="${userPersonDto.phoneNumber}"></p>
+		</div>
+        <div>
+			<input type="email" placeholder="E-mail"  th:field="${userPersonDto.email}">
+			<p th:if="${#fields.hasErrors('email')}"  th:errors="${userPersonDto.email}"></p>
+		</div>
+        <div>
+			<input type="password" placeholder="Hasło"  th:field="${userPersonDto.password}">
+			<p th:if="${#fields.hasErrors('password')}"  th:errors="${userPersonDto.password}"></p>
+		</div>
+        <div>
         <select name="selectedOption">
             <option th:value="USER" >Użytkownik</option>
             <option th:value="ADMIN" >Administrator</option>
             <option th:value="WORKER" >Pracownik obsługi</option>
             <option th:value="WAREHOUSEMAN">Magazynier</option>
         </select>
+        </div>
         <button type="submit">Dodaj</button>
     </form>
     
