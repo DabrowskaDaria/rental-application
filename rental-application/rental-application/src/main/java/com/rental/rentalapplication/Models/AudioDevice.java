@@ -8,11 +8,90 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
+
 @Entity
 @Table(name="audio_devices")
 public class AudioDevice {
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getSpeakersPower() {
+		return speakersPower;
+	}
+
+	public void setSpeakersPower(String speakersPower) {
+		this.speakersPower = speakersPower;
+	}
+
+	public int getNumberOfspeakers() {
+		return numberOfspeakers;
+	}
+
+	public void setNumberOfspeakers(int numberOfspeakers) {
+		this.numberOfspeakers = numberOfspeakers;
+	}
+
+	public String getFrequencyResponse() {
+		return frequencyResponse;
+	}
+
+	public void setFrequencyResponse(String frequencyResponse) {
+		this.frequencyResponse = frequencyResponse;
+	}
+
+	public String getMicrophoneType() {
+		return microphoneType;
+	}
+
+	public void setMicrophoneType(String microphoneType) {
+		this.microphoneType = microphoneType;
+	}
+
+	public String getHeadphoneType() {
+		return headphoneType;
+	}
+
+	public void setHeadphoneType(String headphoneType) {
+		this.headphoneType = headphoneType;
+	}
+
+	public boolean isMicrophone() {
+		return microphone;
+	}
+
+	public void setMicrophone(boolean microphone) {
+		this.microphone = microphone;
+	}
+
+	public int getWorkingTime() {
+		return workingTime;
+	}
+
+	public void setWorkingTime(int workingTime) {
+		this.workingTime = workingTime;
+	}
+
+	public boolean isWirelessTransmission() {
+		return wirelessTransmission;
+	}
+
+	public void setWirelessTransmission(boolean wirelessTransmission) {
+		this.wirelessTransmission = wirelessTransmission;
+	}
+
+	public List<Device> getDevices() {
+		return devices;
+	}
+
+	public void setDevices(List<Device> devices) {
+		this.devices = devices;
+	}
+
 	public AudioDevice(String speakersPower, int numberOfspeakers, String frequencyResponse, String connectionType,
 			String headphoneType, boolean microphone, int workingTime, boolean wirelessTransmission,
 			List<Device> devices) {

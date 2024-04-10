@@ -17,11 +17,129 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
 @Entity
 @Table(name="devices")
 public class Device {
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Computer getComputer() {
+		return computer;
+	}
+
+	public void setComputer(Computer computer) {
+		this.computer = computer;
+	}
+
+	public ImageDisplay getImageDisplay() {
+		return imageDisplay;
+	}
+
+	public void setImageDisplay(ImageDisplay imageDisplay) {
+		this.imageDisplay = imageDisplay;
+	}
+
+	public Camera getCamera() {
+		return camera;
+	}
+
+	public void setCamera(Camera camera) {
+		this.camera = camera;
+	}
+
+	public AudioDevice getAudioDevice() {
+		return audioDevice;
+	}
+
+	public void setAudioDevice(AudioDevice audioDevice) {
+		this.audioDevice = audioDevice;
+	}
+
+	public Lighting getLighting() {
+		return lighting;
+	}
+
+	public void setLighting(Lighting lighting) {
+		this.lighting = lighting;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getDeposit() {
+		return deposit;
+	}
+
+	public void setDeposit(int deposit) {
+		this.deposit = deposit;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<DeviceConnector> getDeviceConnector() {
+		return deviceConnector;
+	}
+
+	public void setDeviceConnector(List<DeviceConnector> deviceConnector) {
+		this.deviceConnector = deviceConnector;
+	}
+
+	public List<DeviceFavouriteList> getDevicefavouriteList() {
+		return devicefavouriteList;
+	}
+
+	public void setDevicefavouriteList(List<DeviceFavouriteList> devicefavouriteList) {
+		this.devicefavouriteList = devicefavouriteList;
+	}
+
+	public List<DeviceCart> getDeviceCart() {
+		return deviceCart;
+	}
+
+	public void setDeviceCart(List<DeviceCart> deviceCart) {
+		this.deviceCart = deviceCart;
+	}
+
+	public List<DeviceRental> getDeviceRental() {
+		return deviceRental;
+	}
+
+	public void setDeviceRental(List<DeviceRental> deviceRental) {
+		this.deviceRental = deviceRental;
+	}
+
 	public Device(Category category, Computer computer, ImageDisplay imageDisplay, Camera camera,
 			AudioDevice audioDevice, Lighting lighting, @NotNull String name, @NotNull int price, @NotNull int deposit,
 			@NotNull String description, List<DeviceConnector> deviceConnector) {

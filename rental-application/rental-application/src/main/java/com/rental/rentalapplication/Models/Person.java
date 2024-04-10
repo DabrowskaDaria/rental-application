@@ -9,14 +9,44 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+
 
 
 @Entity
 @Table(name="persons")
 public class Person {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@NotNull
+	@Column(name="first_name")
+	private String firstName;
+	@NotNull
+	private String surname;
+	
+	@Column(name="pesel_number")
+	private String pesel;
+	
+	@Column(name="phone_number")
+	@NotNull
+	private String phoneNumber;
+	
+	private String place;
+	
+	private String street;
+	
+	@Column(name="house_number")
+	private int houseNumber;
+	
+	@Column(name="zip_code")
+	private String zipCode;
+	
+	@OneToOne
+	@JoinColumn(name="fk_users_id")
+	private User user;
+	
 	public Person() {
 		super();
 	}
@@ -100,34 +130,5 @@ public class Person {
 		this.phoneNumber = phoneNumber;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
 	
-	@NotNull
-	@Column(name="first_name")
-	private String firstName;
-	@NotNull
-	private String surname;
-	
-	@Column(name="pesel_number")
-	private String pesel;
-	
-	@Column(name="phone_number")
-	@NotNull
-	private String phoneNumber;
-	
-	private String place;
-	
-	private String street;
-	
-	@Column(name="house_number")
-	private int houseNumber;
-	
-	@Column(name="zip_code")
-	private String zipCode;
-	
-	@OneToOne
-	@JoinColumn(name="fk_users_id")
-	private User user;
 }

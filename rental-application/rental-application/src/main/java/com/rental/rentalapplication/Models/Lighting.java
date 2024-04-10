@@ -9,11 +9,58 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
+
 @Table(name="lighting")
 @Entity
 public class Lighting {
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getLightingColor() {
+		return lightingColor;
+	}
+
+	public void setLightingColor(String lightingColor) {
+		this.lightingColor = lightingColor;
+	}
+
+	public int getPowerConsumption() {
+		return powerConsumption;
+	}
+
+	public void setPowerConsumption(int powerConsumption) {
+		this.powerConsumption = powerConsumption;
+	}
+
+	public int getLampPower() {
+		return lampPower;
+	}
+
+	public void setLampPower(int lampPower) {
+		this.lampPower = lampPower;
+	}
+
+	public String getDeviceSize() {
+		return deviceSize;
+	}
+
+	public void setDeviceSize(String deviceSize) {
+		this.deviceSize = deviceSize;
+	}
+
+	public List<Device> getDevices() {
+		return devices;
+	}
+
+	public void setDevices(List<Device> devices) {
+		this.devices = devices;
+	}
+
 	public Lighting(@NotNull String lightingColor, @NotNull int powerConsumption, @NotNull int lampPower,
 			@NotNull String deviceSize) {
 		super();

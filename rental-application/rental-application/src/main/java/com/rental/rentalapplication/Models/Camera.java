@@ -15,11 +15,50 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-@Getter
-@Setter
+
 @Entity
 @Table(name="camera")
 public class Camera {
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getResolution() {
+		return resolution;
+	}
+
+	public void setResolution(String resolution) {
+		this.resolution = resolution;
+	}
+
+	public boolean isImageStabilization() {
+		return imageStabilization;
+	}
+
+	public void setImageStabilization(boolean imageStabilization) {
+		this.imageStabilization = imageStabilization;
+	}
+
+	public boolean isOpticalZoom() {
+		return opticalZoom;
+	}
+
+	public void setOpticalZoom(boolean opticalZoom) {
+		this.opticalZoom = opticalZoom;
+	}
+
+	public List<Device> getDevices() {
+		return devices;
+	}
+
+	public void setDevices(List<Device> devices) {
+		this.devices = devices;
+	}
+
 	public Camera(@NotNull String resolution, @NotNull boolean imageStabilization, @NotNull boolean opticalZoom,
 			List<Device> devices) {
 		super();

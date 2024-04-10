@@ -15,12 +15,34 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 
 @Entity
 @Table(name="connectors")
 public class Connector {
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<DeviceConnector> getDeviceConnectors() {
+		return deviceConnectors;
+	}
+
+	public void setDeviceConnectors(List<DeviceConnector> deviceConnectors) {
+		this.deviceConnectors = deviceConnectors;
+	}
+
 	public Connector(@NotNull String name) {
 		super();
 		this.name = name;

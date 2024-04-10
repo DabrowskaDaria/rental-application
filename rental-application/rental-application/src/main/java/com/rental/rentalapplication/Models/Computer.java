@@ -16,12 +16,58 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 
 @Entity
 @Table(name="computers_and_tablets")
 public class Computer {
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getDisplay() {
+		return display;
+	}
+	public void setDisplay(String display) {
+		this.display = display;
+	}
+	public String getProcesor() {
+		return procesor;
+	}
+	public void setProcesor(String procesor) {
+		this.procesor = procesor;
+	}
+	public String getDrive() {
+		return drive;
+	}
+	public void setDrive(String drive) {
+		this.drive = drive;
+	}
+	public int getRam() {
+		return ram;
+	}
+	public void setRam(int ram) {
+		this.ram = ram;
+	}
+	public String getGraphicsCard() {
+		return graphicsCard;
+	}
+	public void setGraphicsCard(String graphicsCard) {
+		this.graphicsCard = graphicsCard;
+	}
+	public String getOperatingSystem() {
+		return operatingSystem;
+	}
+	public void setOperatingSystem(String operatingSystem) {
+		this.operatingSystem = operatingSystem;
+	}
+	public List<Device> getDevices() {
+		return devices;
+	}
+	public void setDevices(List<Device> devices) {
+		this.devices = devices;
+	}
 	public Computer(@NotNull String display, @NotNull String procesor, @NotNull String drive, @NotNull int ram,
 			String graphicsCard, @NotNull String operatingSystem) {
 		super();

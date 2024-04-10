@@ -1,6 +1,6 @@
 package com.rental.rentalapplication.Services;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,8 @@ import com.rental.rentalapplication.Models.User;
 import com.rental.rentalapplication.Repository.PersonRepository;
 import com.rental.rentalapplication.Repository.UserRepository;
 
+
+
 @Service
 public class UserManager {
 
@@ -21,7 +23,7 @@ public class UserManager {
 	private UserRepository userRepo;
 	@Autowired
 	private PersonRepository personRepo; 
-	//private List<String> accountTypes= new ArrayList<String>();
+
 	
 	public void addAccount(@ModelAttribute UserPersonDto userPersonDto) {
 		User user= new User(userPersonDto.getEmail(), userPersonDto.getPassword());
@@ -56,6 +58,14 @@ public class UserManager {
 		}catch(Exception ex) {
 			System.out.println("Exception: " + ex.getMessage());
 		}
+	}
+	
+	public void editData(@ModelAttribute UserPersonDto userPersonDto,@RequestParam int id) {
+		Person person=personRepo.findById(id).get();
+		person.setFirstName(userPersonDto.getFirstName());
+		person.setSurname(userPersonDto.getSurname());
+		person.setPhoneNumber(userPersonDto.getPhoneNumber());
+		personRepo.save(person);
 	}
 	
 }

@@ -11,13 +11,29 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @Entity
 @Table(name="devices_connectors")
 public class DeviceConnector {
 
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Connector getConnector() {
+		return connector;
+	}
+	public void setConnector(Connector connector) {
+		this.connector = connector;
+	}
+	public Device getDevice() {
+		return device;
+	}
+	public void setDevice(Device device) {
+		this.device = device;
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

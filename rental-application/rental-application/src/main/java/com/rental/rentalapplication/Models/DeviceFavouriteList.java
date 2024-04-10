@@ -11,12 +11,35 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+
 @AllArgsConstructor
 @Entity
 @Table(name = "devices_favourites_lists")
 public class DeviceFavouriteList {
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Device getDevice() {
+		return device;
+	}
+
+	public void setDevice(Device device) {
+		this.device = device;
+	}
+
+	public FavouriteList getFavouriteList() {
+		return favouriteList;
+	}
+
+	public void setFavouriteList(FavouriteList favouriteList) {
+		this.favouriteList = favouriteList;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

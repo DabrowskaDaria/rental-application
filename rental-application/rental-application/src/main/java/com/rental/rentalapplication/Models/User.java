@@ -15,14 +15,43 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+
 
 
 @Entity
 @Table(name="users")
 public class User {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@ManyToOne()
+	@JoinColumn(name="fk_companies_id")
+	private Company company;
+	
+	@Column(unique = true)
+	@NotNull
+	private String email;
+	
+	@NotNull
+	private String password;
+	
+	@Column(name="account_type")
+	
+	private String accountType;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Rental> rental=new ArrayList<Rental>();
+	
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	private FavouriteList favouriteList;
+	
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	private Person person;
+	
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	private Cart cart;
 
 	public User() {
 		super();
@@ -106,34 +135,5 @@ public class User {
 		this.password = password;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
 	
-	@ManyToOne()
-	@JoinColumn(name="fk_companies_id")
-	private Company company;
-	
-	@Column(unique = true)
-	@NotNull
-	private String email;
-	
-	@NotNull
-	private String password;
-	
-	@Column(name="account_type")
-	
-	private String accountType;
-	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<Rental> rental=new ArrayList<Rental>();
-	
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-	private FavouriteList favouriteList;
-	
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-	private Person person;
-	
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-	private Cart cart;
 }

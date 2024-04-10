@@ -8,12 +8,82 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 
 @Entity
 @Table(name="image_display")
 public class ImageDisplay {
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getScreenSize() {
+		return screenSize;
+	}
+
+	public void setScreenSize(String screenSize) {
+		this.screenSize = screenSize;
+	}
+
+	public String getScreenResolution() {
+		return screenResolution;
+	}
+
+	public void setScreenResolution(String screenResolution) {
+		this.screenResolution = screenResolution;
+	}
+
+	public int getRefreshRate() {
+		return refreshRate;
+	}
+
+	public void setRefreshRate(int refreshRate) {
+		this.refreshRate = refreshRate;
+	}
+
+	public String getScreenFormat() {
+		return screenFormat;
+	}
+
+	public void setScreenFormat(String screenFormat) {
+		this.screenFormat = screenFormat;
+	}
+
+	public String getActiveSurface() {
+		return activeSurface;
+	}
+
+	public void setActiveSurface(String activeSurface) {
+		this.activeSurface = activeSurface;
+	}
+
+	public String getMatrixType() {
+		return matrixType;
+	}
+
+	public void setMatrixType(String matrixType) {
+		this.matrixType = matrixType;
+	}
+
+	public int getLampPower() {
+		return lampPower;
+	}
+
+	public void setLampPower(int lampPower) {
+		this.lampPower = lampPower;
+	}
+
+	public List<Device> getDevices() {
+		return devices;
+	}
+
+	public void setDevices(List<Device> devices) {
+		this.devices = devices;
+	}
+
 	public ImageDisplay(String screenSize, String screenResolution, int refreshRate, String screenFormat,
 			String activeSurface, String matrixType, int lampPower) {
 		super();

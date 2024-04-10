@@ -16,12 +16,35 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+
 @AllArgsConstructor
 @Entity
 @Table(name="favourites_lists")
 public class FavouriteList {
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public List<DeviceFavouriteList> getDeviceFavouriteLists() {
+		return deviceFavouriteLists;
+	}
+
+	public void setDeviceFavouriteLists(List<DeviceFavouriteList> deviceFavouriteLists) {
+		this.deviceFavouriteLists = deviceFavouriteLists;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

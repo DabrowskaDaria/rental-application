@@ -15,13 +15,75 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 
 @Entity
 @Table(name="companies")
 public class Company {
 	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getComnapyNumber() {
+		return comnapyNumber;
+	}
+
+	public void setComnapyNumber(String comnapyNumber) {
+		this.comnapyNumber = comnapyNumber;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public int getBuldingNumber() {
+		return buldingNumber;
+	}
+
+	public void setBuldingNumber(int buldingNumber) {
+		this.buldingNumber = buldingNumber;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
 	public Company(String name, String comnapyNumber, String place, String street, int buldingNumber, String zipCode,
 			List<User> users) {
 		super();

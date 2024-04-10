@@ -19,11 +19,100 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+
 @Entity
 @Table(name="rentals")
 public class Rental {
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public LocalDate getRentalStartDate() {
+		return rentalStartDate;
+	}
+
+
+	public void setRentalStartDate(LocalDate rentalStartDate) {
+		this.rentalStartDate = rentalStartDate;
+	}
+
+
+	public LocalDate getRentalEndDate() {
+		return rentalEndDate;
+	}
+
+
+	public void setRentalEndDate(LocalDate rentalEndDate) {
+		this.rentalEndDate = rentalEndDate;
+	}
+
+
+	public String getRentalStatus() {
+		return rentalStatus;
+	}
+
+
+	public void setRentalStatus(String rentalStatus) {
+		this.rentalStatus = rentalStatus;
+	}
+
+
+	public String getDeliveryMethod() {
+		return deliveryMethod;
+	}
+
+
+	public void setDeliveryMethod(String deliveryMethod) {
+		this.deliveryMethod = deliveryMethod;
+	}
+
+
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	public List<DeviceRental> getDeviceRentals() {
+		return deviceRentals;
+	}
+
+
+	public void setDeviceRentals(List<DeviceRental> deviceRentals) {
+		this.deviceRentals = deviceRentals;
+	}
+
+
+	public List<Invoice> getInvoices() {
+		return invoices;
+	}
+
+
+	public void setInvoices(List<Invoice> invoices) {
+		this.invoices = invoices;
+	}
+
+
 	public Rental(@NotNull LocalDate rentalStartDate, @NotNull LocalDate rentalEndDate, @NotNull String rentalStatus,
 			@NotNull String deliveryMethod, @NotNull String paymentMethod, User user, List<DeviceRental> deviceRentals,
 			List<Invoice> invoices) {
