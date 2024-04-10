@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="addDevice">
-        <form action="@{/addDevice}" method="post" th:object="${deviceDto}">
+        <form action="/device/add" method="post" th:object="${deviceDto}">
             <h2>Dodaj urządzenie</h2>
             <div class="choose-category">
                 <select id="category" name="category" th:field="*{category}" onchange="changeTechnicalDataFields()">
