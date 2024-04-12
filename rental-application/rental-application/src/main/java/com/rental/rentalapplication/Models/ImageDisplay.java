@@ -12,6 +12,27 @@ import lombok.Setter;
 @Entity
 @Table(name="image_display")
 public class ImageDisplay {
+	/*public ImageDisplay(String screenResolution, String matrixType, int lampPower) {
+		super();
+		this.screenResolution = screenResolution;
+		this.matrixType = matrixType;
+		this.lampPower = lampPower;
+	}*/
+
+	public ImageDisplay(String screenSize, String screenFormat, String activeSurface) {
+		super();
+		this.screenSize = screenSize;
+		this.screenFormat = screenFormat;
+		this.activeSurface = activeSurface;
+	}
+
+	public ImageDisplay(String screenSize, String screenResolution, int refreshRate) {
+		super();
+		this.screenSize = screenSize;
+		this.screenResolution = screenResolution;
+		this.refreshRate = refreshRate;
+	}
+
 	public Integer getId() {
 		return id;
 	}

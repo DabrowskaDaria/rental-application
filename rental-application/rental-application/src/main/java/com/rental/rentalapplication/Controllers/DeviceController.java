@@ -35,9 +35,7 @@ public class DeviceController {
 	
 	@PostMapping("/add")
 	public String addDevice(@ModelAttribute DeviceDto deviceDto){
-		System.out.println(deviceDto.getTechnicalDetails().get("ram"));
-		//deviceManager.addDevice(deviceDto);
-		
+		deviceManager.addDevice(deviceDto);
 		return "redirect:/device/add";
 	}
 	

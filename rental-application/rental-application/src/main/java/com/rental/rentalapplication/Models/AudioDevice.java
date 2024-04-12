@@ -12,6 +12,27 @@ import lombok.Setter;
 @Entity
 @Table(name="audio_devices")
 public class AudioDevice {
+	public AudioDevice(String frequencyResponse, String microphoneType, boolean wirelessTransmission) {
+		super();
+		this.frequencyResponse = frequencyResponse;
+		this.microphoneType = microphoneType;
+		this.wirelessTransmission = wirelessTransmission;
+	}
+
+	public AudioDevice(String headphoneType, boolean microphone, int workingTime, boolean wirelessTransmission) {
+		super();
+		this.headphoneType = headphoneType;
+		this.microphone = microphone;
+		this.workingTime = workingTime;
+		this.wirelessTransmission = wirelessTransmission;
+	}
+
+	public AudioDevice(String speakersPower, int numberOfspeakers) {
+		super();
+		this.speakersPower = speakersPower;
+		this.numberOfspeakers = numberOfspeakers;
+	}
+
 	public Integer getId() {
 		return id;
 	}

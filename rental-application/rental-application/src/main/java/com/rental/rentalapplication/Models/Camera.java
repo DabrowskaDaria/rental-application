@@ -19,6 +19,13 @@ import lombok.Setter;
 @Entity
 @Table(name="camera")
 public class Camera {
+	public Camera(@NotNull String resolution, @NotNull boolean imageStabilization, @NotNull boolean opticalZoom) {
+		super();
+		this.resolution = resolution;
+		this.imageStabilization = imageStabilization;
+		this.opticalZoom = opticalZoom;
+	}
+
 	public Integer getId() {
 		return id;
 	}
