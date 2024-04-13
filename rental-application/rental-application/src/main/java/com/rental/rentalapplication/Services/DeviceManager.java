@@ -44,12 +44,16 @@ public class DeviceManager {
 	
 	public void addDevice(@ModelAttribute DeviceDto deviceDto) {
 		
+		
 			if(deviceDto.getCategory().getName()=="telewizor") {
 				ImageDisplay imageDisplay= new ImageDisplay(deviceDto.getScreenResolution(),deviceDto.getScreenSize(),deviceDto.getRefreshRate());
 				displayRepo.save(imageDisplay);
-				//Device device = new Device(deviceDto.getCategory(), null, imageDisplay, null, null, null, deviceDto.getName(), deviceDto.getPrice(), deviceDto.getDeposit(), deviceDto.getDescription());
-				//deviceRepo.save(device);
-			}else if(deviceDto.getCategory().getName()=="laptop") {
+				System.out.println(deviceDto.getTechnicalDetails().toString());
+				Device device = new Device(deviceDto.getCategory(), null, imageDisplay, null, null, null, deviceDto.getName(), deviceDto.getPrice(), deviceDto.getDeposit(), deviceDto.getDescription());
+				deviceRepo.save(device);
+			}
+			/*
+			else if(deviceDto.getCategory().getName()=="laptop") {
 				Computer computer= new Computer(deviceDto.getDisplay(), deviceDto.getProcesor(), deviceDto.getDrive(), deviceDto.getRam(), deviceDto.getGraphicsCard(), deviceDto.getOperatingSystem());
 				computerRepo.save(computer);
 				Device device = new Device(deviceDto.getCategory(), computer, null, null, null, null, deviceDto.getName(), deviceDto.getPrice(), deviceDto.getDeposit(), deviceDto.getDescription());
@@ -87,8 +91,8 @@ public class DeviceManager {
 			}else if (deviceDto.getCategory().getName()=="tablet") {
 				Computer computer= new Computer(deviceDto.getDisplay(), deviceDto.getProcesor(), deviceDto.getDrive(), deviceDto.getRam(), deviceDto.getOperatingSystem());
 				computerRepo.save(computer);
-				//Device device = new Device(deviceDto.getCategory(), computer, null, null, null, null, deviceDto.getName(), deviceDto.getPrice(), deviceDto.getDeposit(), deviceDto.getDescription());
-				//deviceRepo.save(device);
+				Device device = new Device(deviceDto.getCategory(), computer, null, null, null, null, deviceDto.getName(), deviceDto.getPrice(), deviceDto.getDeposit(), deviceDto.getDescription());
+				deviceRepo.save(device);
 			}else if (deviceDto.getCategory().getName()=="kamera") {
 				Camera camera= new Camera(deviceDto.getResolution(),deviceDto.isImageStabilization(), deviceDto.isOpticalZoom());
 				Device device = new Device(deviceDto.getCategory(), null, null, camera, null, null, deviceDto.getName(), deviceDto.getPrice(), deviceDto.getDeposit(), deviceDto.getDescription());
@@ -99,7 +103,7 @@ public class DeviceManager {
 				audioRepo.save(audioDevice);
 				Device device = new Device(deviceDto.getCategory(), null, null, null, audioDevice, null, deviceDto.getName(), deviceDto.getPrice(), deviceDto.getDeposit(), deviceDto.getDescription());
 				deviceRepo.save(device);
-			}
+			}*/
 		
 		}
 		

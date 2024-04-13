@@ -26,7 +26,7 @@ public class ImageDisplay {
 		this.activeSurface = activeSurface;
 	}
 
-	public ImageDisplay(String screenSize, String screenResolution, int refreshRate) {
+	public ImageDisplay(String screenResolution,String screenSize , int refreshRate) {
 		super();
 		this.screenSize = screenSize;
 		this.screenResolution = screenResolution;
