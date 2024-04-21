@@ -11,14 +11,49 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+
 
 
 @Entity
 @Table(name="companies")
 public class Company {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column(nullable = true)
+	private String name;
+	
+	@Column(name="company_number", nullable = true)
+	private String comnapyNumber;
+	
+	@Column(nullable = true)
+	private String place;
+	
+	@Column(nullable = true)
+	private String street;
+	
+	@Column(name="bulding_number", nullable = true)
+	private String buldingNumber;
+	
+	@Column(name="zip_code", nullable = true)
+	private String zipCode;
+	
+	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+	List<User> users= new ArrayList<User>();
+	
+	public Company(String name, String comnapyNumber, String place, String street, String buldingNumber, String zipCode,
+		List<User> users) {
+		super();
+		this.name = name;
+		this.comnapyNumber = comnapyNumber;
+		this.place = place;
+		this.street = street;
+		this.buldingNumber = buldingNumber;
+		this.zipCode = zipCode;
+		this.users = users;
+	}
 	
 	public Integer getId() {
 		return id;
@@ -60,11 +95,11 @@ public class Company {
 		this.street = street;
 	}
 
-	public int getBuldingNumber() {
+	public String getBuldingNumber() {
 		return buldingNumber;
 	}
 
-	public void setBuldingNumber(int buldingNumber) {
+	public void setBuldingNumber(String buldingNumber) {
 		this.buldingNumber = buldingNumber;
 	}
 
@@ -84,37 +119,7 @@ public class Company {
 		this.users = users;
 	}
 
-	public Company(String name, String comnapyNumber, String place, String street, int buldingNumber, String zipCode,
-			List<User> users) {
-		super();
-		this.name = name;
-		this.comnapyNumber = comnapyNumber;
-		this.place = place;
-		this.street = street;
-		this.buldingNumber = buldingNumber;
-		this.zipCode = zipCode;
-		this.users = users;
-	}
+	
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
 	
-	private String name;
-	
-	@Column(name="company_number")
-	private String comnapyNumber;
-	
-	private String place;
-	
-	private String street;
-	
-	@Column(name="bulding_number")
-	private int buldingNumber;
-	
-	@Column(name="zip_code")
-	private String zipCode;
-	
-	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-	List<User> users= new ArrayList<User>();
 }

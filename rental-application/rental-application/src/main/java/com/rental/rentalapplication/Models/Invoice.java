@@ -12,14 +12,46 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
 
 @AllArgsConstructor
 @Table(name="invoices")
 @Entity
 public class Invoice {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column(name="invoice_date")
+	@NotNull
+	private LocalDate invoiceDate;
+	
+	@Column(name="total_price")
+	@NotNull
+	private Integer price;
+	
+	@Column(name="full_deposit")
+	@NotNull
+	private Integer deposit;
+	
+	@Column(name="invoice_type")
+	@NotNull
+	private String invoiceType;;
+	
+	@ManyToOne
+	@JoinColumn(name="fk_rentals_id")
+	private Rental rental;
+	
+	public Invoice(@NotNull LocalDate invoiceDate, @NotNull Integer price, @NotNull Integer deposit,
+			@NotNull String invoiceType, Rental rental) {
+		super();
+		this.invoiceDate = invoiceDate;
+		this.price = price;
+		this.deposit = deposit;
+		this.invoiceType = invoiceType;
+		this.rental = rental;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -36,19 +68,19 @@ public class Invoice {
 		this.invoiceDate = invoiceDate;
 	}
 
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 
-	public int getDeposit() {
+	public Integer getDeposit() {
 		return deposit;
 	}
 
-	public void setDeposit(int deposit) {
+	public void setDeposit(Integer deposit) {
 		this.deposit = deposit;
 	}
 
@@ -68,38 +100,8 @@ public class Invoice {
 		this.rental = rental;
 	}
 
-	public Invoice(@NotNull LocalDate invoiceDate, @NotNull int price, @NotNull int deposit,
-			@NotNull String invoiceType, Rental rental) {
-		super();
-		this.invoiceDate = invoiceDate;
-		this.price = price;
-		this.deposit = deposit;
-		this.invoiceType = invoiceType;
-		this.rental = rental;
-	}
+	
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
 	
-	@Column(name="invoice_date")
-	@NotNull
-	private LocalDate invoiceDate;
-	
-	@Column(name="total_price")
-	@NotNull
-	private int price;
-	
-	@Column(name="full_deposit")
-	@NotNull
-	private int deposit;
-	
-	@Column(name="invoice_type")
-	@NotNull
-	private String invoiceType;;
-	
-	@ManyToOne
-	@JoinColumn(name="fk_rentals_id")
-	private Rental rental;
 	
 }

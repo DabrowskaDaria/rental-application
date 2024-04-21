@@ -26,7 +26,10 @@
                 <td th:text="${user.person.phoneNumber}"></td>
                 <td th:text="${user.email}"></td>
                 <td th:text="${user.accountType}"></td>
-                <td><a th:href="@{/account/delete(id=${user.id})}">Usuń</a></td>
+                <td>
+					<form th:action="@{/account/delete/{id}/delete(id=${user.id})}" method="post">
+						<button type="submit">Usuń</button>
+					</form>
             </tr>
         </tbody>
     </table>

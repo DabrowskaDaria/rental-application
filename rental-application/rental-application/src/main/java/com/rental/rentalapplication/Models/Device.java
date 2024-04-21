@@ -13,13 +13,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Entity
 @Table(name="devices")
 public class Device {
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +41,7 @@ public class Device {
 	private Camera camera;
 	
 	@ManyToOne()
-	@JoinColumn(name ="fk_audio_devices__id")
+	@JoinColumn(name ="fk_audio_devices_id")
 	private AudioDevice audioDevice;
 	
 	@ManyToOne()
@@ -52,9 +51,9 @@ public class Device {
 	@NotNull
 	private String name;
 	@NotNull
-	private int price;
+	private Integer price;
 	@NotNull
-	private int deposit;
+	private Integer deposit;
 	@NotNull
 	private String description;
 	
@@ -69,8 +68,14 @@ public class Device {
 	
 	@OneToMany(mappedBy = "device", cascade = CascadeType.ALL)
 	private List<DeviceRental> deviceRental= new ArrayList<DeviceRental>();
+	
+	public Device() {
+		super();
+	}
+
+	
 	public Device(Category category, Computer computer, ImageDisplay imageDisplay, Camera camera,
-			AudioDevice audioDevice, Lighting lighting, @NotNull String name, @NotNull int price, @NotNull int deposit,
+			AudioDevice audioDevice, Lighting lighting, @NotNull String name, @NotNull Integer price, @NotNull Integer deposit,
 			@NotNull String description) {
 		super();
 		this.category = category;
@@ -86,7 +91,7 @@ public class Device {
 	}
 	
 	public Device(Category category, Computer computer, ImageDisplay imageDisplay, Camera camera,
-			AudioDevice audioDevice, Lighting lighting, @NotNull String name, @NotNull int price, @NotNull int deposit,
+			AudioDevice audioDevice, Lighting lighting, @NotNull String name, @NotNull Integer price, @NotNull Integer deposit,
 			@NotNull String description, List<DeviceConnector> deviceConnector) {
 		super();
 		this.category = category;
@@ -100,6 +105,18 @@ public class Device {
 		this.deposit = deposit;
 		this.description = description;
 		this.deviceConnector = deviceConnector;
+	}
+	
+	public void addConnector(Connector connector) {
+		deviceConnector.add(new DeviceConnector(connector,this));
+	}
+	
+	public void addCart(Cart cart) {
+		deviceCart.add(new DeviceCart(cart, this));
+	}
+	
+	public void addFavouriteList(FavouriteList favouriteList) {
+		devicefavouriteList.add(new DeviceFavouriteList(this, favouriteList));
 	}
 
 	public Integer getId() {
@@ -166,19 +183,19 @@ public class Device {
 		this.name = name;
 	}
 
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 
-	public int getDeposit() {
+	public Integer getDeposit() {
 		return deposit;
 	}
 
-	public void setDeposit(int deposit) {
+	public void setDeposit(Integer deposit) {
 		this.deposit = deposit;
 	}
 

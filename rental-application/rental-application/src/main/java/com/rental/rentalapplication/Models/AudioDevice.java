@@ -4,22 +4,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+
 
 
 @Entity
 @Table(name="audio_devices")
 public class AudioDevice {
-	public AudioDevice(String frequencyResponse, String microphoneType, boolean wirelessTransmission) {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column(name="speakers_power", nullable = true)
+	private String speakersPower;
+
+	@Column(name="number_of_speakers", nullable = true)
+	private Integer numberOfspeakers;
+	
+	@Column(name="frequency_response", nullable = true)
+	private String frequencyResponse;
+	
+	@Column(name="microphone_type", nullable = true)
+	private String microphoneType; 
+	
+	@Column(name="headphone_type", nullable = true)
+	private String headphoneType; 
+	
+	@Column(nullable = true)
+	private Boolean microphone;
+	
+	@Column(name="working_time", nullable = true)
+	private Integer workingTime;
+	
+	@Column(name="wireless_transmission", nullable = true)
+	private Boolean wirelessTransmission;
+	
+	@OneToMany(mappedBy = "audioDevice", cascade = CascadeType.ALL)
+	private List<Device> devices= new ArrayList<Device>();
+	
+	
+	public AudioDevice(String frequencyResponse, String microphoneType, Boolean wirelessTransmission) {
 		super();
 		this.frequencyResponse = frequencyResponse;
 		this.microphoneType = microphoneType;
 		this.wirelessTransmission = wirelessTransmission;
 	}
 
-	public AudioDevice(String headphoneType, boolean microphone, int workingTime, boolean wirelessTransmission) {
+	public AudioDevice() {
+		super();
+	}
+
+	public AudioDevice(String headphoneType, Boolean microphone, Integer workingTime, Boolean wirelessTransmission) {
 		super();
 		this.headphoneType = headphoneType;
 		this.microphone = microphone;
@@ -27,12 +62,26 @@ public class AudioDevice {
 		this.wirelessTransmission = wirelessTransmission;
 	}
 
-	public AudioDevice(String speakersPower, int numberOfspeakers) {
+	public AudioDevice(String speakersPower, Integer numberOfspeakers) {
 		super();
 		this.speakersPower = speakersPower;
 		this.numberOfspeakers = numberOfspeakers;
 	}
 
+	public AudioDevice(String speakersPower, Integer numberOfspeakers, String frequencyResponse, String connectionType,
+			String headphoneType, Boolean microphone, Integer workingTime, Boolean wirelessTransmission,
+			List<Device> devices) {
+		super();
+		this.speakersPower = speakersPower;
+		this.numberOfspeakers = numberOfspeakers;
+		this.frequencyResponse = frequencyResponse;
+		this.microphoneType = connectionType;
+		this.headphoneType = headphoneType;
+		this.microphone = microphone;
+		this.workingTime = workingTime;
+		this.wirelessTransmission = wirelessTransmission;
+		this.devices = devices;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -49,11 +98,11 @@ public class AudioDevice {
 		this.speakersPower = speakersPower;
 	}
 
-	public int getNumberOfspeakers() {
+	public Integer getNumberOfspeakers() {
 		return numberOfspeakers;
 	}
 
-	public void setNumberOfspeakers(int numberOfspeakers) {
+	public void setNumberOfspeakers(Integer numberOfspeakers) {
 		this.numberOfspeakers = numberOfspeakers;
 	}
 
@@ -81,27 +130,27 @@ public class AudioDevice {
 		this.headphoneType = headphoneType;
 	}
 
-	public boolean isMicrophone() {
+	public Boolean isMicrophone() {
 		return microphone;
 	}
 
-	public void setMicrophone(boolean microphone) {
+	public void setMicrophone(Boolean microphone) {
 		this.microphone = microphone;
 	}
 
-	public int getWorkingTime() {
+	public Integer getWorkingTime() {
 		return workingTime;
 	}
 
-	public void setWorkingTime(int workingTime) {
+	public void setWorkingTime(Integer workingTime) {
 		this.workingTime = workingTime;
 	}
 
-	public boolean isWirelessTransmission() {
+	public Boolean isWirelessTransmission() {
 		return wirelessTransmission;
 	}
 
-	public void setWirelessTransmission(boolean wirelessTransmission) {
+	public void setWirelessTransmission(Boolean wirelessTransmission) {
 		this.wirelessTransmission = wirelessTransmission;
 	}
 
@@ -113,48 +162,7 @@ public class AudioDevice {
 		this.devices = devices;
 	}
 
-	public AudioDevice(String speakersPower, int numberOfspeakers, String frequencyResponse, String connectionType,
-			String headphoneType, boolean microphone, int workingTime, boolean wirelessTransmission,
-			List<Device> devices) {
-		super();
-		this.speakersPower = speakersPower;
-		this.numberOfspeakers = numberOfspeakers;
-		this.frequencyResponse = frequencyResponse;
-		this.microphoneType = connectionType;
-		this.headphoneType = headphoneType;
-		this.microphone = microphone;
-		this.workingTime = workingTime;
-		this.wirelessTransmission = wirelessTransmission;
-		this.devices = devices;
-	}
+	
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
 	
-	@Column(name="speakers_power")
-	private String speakersPower;
-
-	@Column(name="number_of_speakers")
-	private int numberOfspeakers;
-	
-	@Column(name="frequency_response")
-	private String frequencyResponse;
-	
-	@Column(name="microphone_type")
-	private String microphoneType; 
-	
-	@Column(name="headphone_type")
-	private String headphoneType; 
-	
-	private boolean microphone;
-	
-	@Column(name="working_time")
-	private int workingTime;
-	
-	@Column(name="wireless_transmission")
-	private boolean wirelessTransmission;
-	
-	@OneToMany(mappedBy = "audioDevice", cascade = CascadeType.ALL)
-	private List<Device> devices= new ArrayList<Device>();
 }

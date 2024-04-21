@@ -4,35 +4,66 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
 
 @Entity
 @Table(name="image_display")
 public class ImageDisplay {
-	/*public ImageDisplay(String screenResolution, String matrixType, int lampPower) {
-		super();
-		this.screenResolution = screenResolution;
-		this.matrixType = matrixType;
-		this.lampPower = lampPower;
-	}*/
+	
+	
 
-	public ImageDisplay(String screenSize, String screenFormat, String activeSurface) {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column(name="screen_size", nullable = true)
+	private String screenSize;
+	
+	@Column(name="screen_resolution", nullable = true)
+	private String screenResolution;
+	
+	@Column(name="refresh_rate", nullable = true)
+	private Integer refreshRate;
+	
+	@Column(name="format", nullable = true)
+	private String screenFormat;
+	
+	@Column(name="active_surface", nullable = true)
+	private String activeSurface;
+	
+	@Column(name="matrix_type", nullable = true)
+	private String matrixType;
+	
+	@Column(name="lamp_power", nullable = true)
+	private Integer lampPower;
+	
+	@OneToMany(mappedBy = "imageDisplay", cascade = CascadeType.ALL)
+	private List <Device> devices= new ArrayList<Device>();
+	
+	public ImageDisplay() {
+		super();
+	}
+	public ImageDisplay(String screenFormat, String screenSize, String activeSurface) {
 		super();
 		this.screenSize = screenSize;
 		this.screenFormat = screenFormat;
 		this.activeSurface = activeSurface;
 	}
 
-	public ImageDisplay(String screenResolution,String screenSize , int refreshRate) {
+	public ImageDisplay(String screenResolution,String screenSize , Integer refreshRate) {
 		super();
 		this.screenSize = screenSize;
 		this.screenResolution = screenResolution;
 		this.refreshRate = refreshRate;
 	}
 
+	public ImageDisplay(String matrixType,Integer lampPower,String screenResolution) {
+		super();
+		this.screenResolution = screenResolution;
+		this.matrixType = matrixType;
+		this.lampPower = lampPower;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -57,11 +88,11 @@ public class ImageDisplay {
 		this.screenResolution = screenResolution;
 	}
 
-	public int getRefreshRate() {
+	public Integer getRefreshRate() {
 		return refreshRate;
 	}
 
-	public void setRefreshRate(int refreshRate) {
+	public void setRefreshRate(Integer refreshRate) {
 		this.refreshRate = refreshRate;
 	}
 
@@ -89,11 +120,11 @@ public class ImageDisplay {
 		this.matrixType = matrixType;
 	}
 
-	public int getLampPower() {
+	public Integer getLampPower() {
 		return lampPower;
 	}
 
-	public void setLampPower(int lampPower) {
+	public void setLampPower(Integer lampPower) {
 		this.lampPower = lampPower;
 	}
 
@@ -105,43 +136,6 @@ public class ImageDisplay {
 		this.devices = devices;
 	}
 
-	public ImageDisplay(String screenSize, String screenResolution, int refreshRate, String screenFormat,
-			String activeSurface, String matrixType, int lampPower) {
-		super();
-		this.screenSize = screenSize;
-		this.screenResolution = screenResolution;
-		this.refreshRate = refreshRate;
-		this.screenFormat = screenFormat;
-		this.activeSurface = activeSurface;
-		this.matrixType = matrixType;
-		this.lampPower = lampPower;
-	}
+	
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
-	@Column(name="screen_size")
-	private String screenSize;
-	
-	@Column(name="screen_resolution")
-	private String screenResolution;
-	
-	@Column(name="refresh_rate")
-	private int refreshRate;
-	
-	@Column(name="format")
-	private String screenFormat;
-	
-	@Column(name="active_surface")
-	private String activeSurface;
-	
-	@Column(name="matrix_type")
-	private String matrixType;
-	
-	@Column(name="lamp_power")
-	private int lampPower;
-	
-	@OneToMany(mappedBy = "imageDisplay", cascade = CascadeType.ALL)
-	private List <Device> devices= new ArrayList<Device>();
 }

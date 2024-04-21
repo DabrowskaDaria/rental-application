@@ -1,21 +1,21 @@
 package com.rental.rentalapplication.DTO;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.rental.rentalapplication.Models.Category;
 import com.rental.rentalapplication.Models.Connector;
 
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotNull;
 
 public class DeviceDto {
 
 	private String name;
 	
-	private int price;
+	private Integer price;
 	
-	private int deposit;
+	private Integer deposit;
 	
 	private String description;
 	
@@ -24,13 +24,14 @@ public class DeviceDto {
 	private Connector connector;
 	
 	private Map<String, String> technicalDetails= new HashMap<String, String>();
+	private List<Connector> connectors=new ArrayList<Connector>();
 	
 	public String getSpeakersPower() {
 		return technicalDetails.get("speakersPower");
 	}
 
 	public int getNumberOfspeakers() {
-		return Integer.valueOf(technicalDetails.get("numberOfspeakers"));
+		return Integer.parseInt(technicalDetails.get("numberOfspeakers"));
 	}
 
 	public String getFrequencyResponse() {
@@ -49,11 +50,11 @@ public class DeviceDto {
 		return Boolean.valueOf(technicalDetails.get("microphone")); 
 	}
 
-	public int getWorkingTime() {
-		return Integer.valueOf(technicalDetails.get("workingTime")); 
+	public Integer getWorkingTime() {
+		return Integer.parseInt(technicalDetails.get("workingTime")); 
 	}
 
-	public boolean isWirelessTransmission() {
+	public Boolean isWirelessTransmission() {
 		return Boolean.valueOf(technicalDetails.get("wirelessTransmission")); 
 	}
 
@@ -61,11 +62,11 @@ public class DeviceDto {
 		return technicalDetails.get("resolution");
 	}
 
-	public boolean isImageStabilization() {
+	public Boolean isImageStabilization() {
 		return Boolean.valueOf(technicalDetails.get("imageStabilization")); 
 	}
 
-	public boolean isOpticalZoom() {
+	public Boolean isOpticalZoom() {
 		return Boolean.valueOf(technicalDetails.get("opticalZoom")); 
 	}
 
@@ -82,7 +83,7 @@ public class DeviceDto {
 	}
 
 	public int getRam() {
-		return Integer.valueOf(technicalDetails.get("ram")); 
+		return Integer.parseInt(technicalDetails.get("ram")); 
 	}
 
 	public String getGraphicsCard() {
@@ -98,7 +99,7 @@ public class DeviceDto {
 	}
 
 	public int getPowerConsumption() {
-		return Integer.valueOf(technicalDetails.get("powerConsumption"));
+		return Integer.parseInt(technicalDetails.get("powerConsumption"));
 	}
 
 	public String getDeviceSize() {
@@ -106,11 +107,11 @@ public class DeviceDto {
 	}
 
 	public String getScreenSize() {
-		return technicalDetails.get("activeSurface");
+		return technicalDetails.get("screenSize");
 	}
 	
 	public int getRefreshRate() {
-		return Integer.valueOf(technicalDetails.get("activeSurface"));
+		return Integer.parseInt(technicalDetails.get("refreshRate"));
 	}
 	
 	public String getScreenFormat() {
@@ -126,32 +127,13 @@ public class DeviceDto {
 	}
 	
 	public int getLampPower() {
-		return Integer.valueOf(technicalDetails.get("lampPower"));
+		return Integer.parseInt(technicalDetails.get("lampPower"));
 	}
 	
 	public String getScreenResolution() {
 		return technicalDetails.get("screenResolution");
 	}
 	
-	public Category getCategory() {
-		return category;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public int getPrice() {
-		return price;
-	}
-	
-	public int getDeposit() {
-		return deposit;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
 	
 	public Map<String, String> getTechnicalDetails() {
 		return technicalDetails;
@@ -169,7 +151,54 @@ public class DeviceDto {
 		this.category = category;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
 
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public void setDeposit(Integer deposit) {
+		this.deposit = deposit;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public Integer getPrice() {
+		return price;
+	}
+	
+	public Integer getDeposit() {
+		return deposit;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public List<Connector> getConnectors() {
+		return connectors;
+	}
+
+	public void setConnectors(List<Connector> connectors) {
+		this.connectors = connectors;
+	}
+
+	public void setTechnicalDetails(Map<String, String> technicalDetails) {
+		this.technicalDetails = technicalDetails;
+	}
+	
 
 	
 }

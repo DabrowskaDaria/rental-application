@@ -8,7 +8,6 @@ import com.rental.rentalapplication.Models.ImageDisplay;
 import jakarta.transaction.Transactional;
 
 @Repository
-@Transactional
 public interface ImageDisplayRepository extends JpaRepository<ImageDisplay, Integer> {
 
 }

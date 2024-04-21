@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.rental.rentalapplication.Models.Device;
 
 @Repository
-@Transactional
 public interface DeviceRepository extends JpaRepository<Device, Integer> {
 
 }

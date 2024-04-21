@@ -5,15 +5,35 @@ import java.util.List;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
 
 @Table(name="lighting")
 @Entity
 public class Lighting {
-	public Lighting(@NotNull String lightingColor, @NotNull int powerConsumption, @NotNull int lampPower,
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@Column(name="lighting_color")
+	@NotNull
+	private String lightingColor;
+	@NotNull
+	@Column(name="power_consumption")
+	private Integer powerConsumption;
+	@NotNull
+	@Column(name="lamp_power")
+	private Integer lampPower;
+	@NotNull
+	@Column(name="device_size")
+	private String deviceSize;
+	
+	@OneToMany(mappedBy = "lighting", cascade = CascadeType.ALL)
+	private List<Device> devices=new ArrayList<Device>();
+	
+	public Lighting() {
+		super();
+	}
+
+	public Lighting(@NotNull String lightingColor, @NotNull Integer powerConsumption, @NotNull Integer lampPower,
 			@NotNull String deviceSize) {
 		super();
 		this.lightingColor = lightingColor;
@@ -38,19 +58,19 @@ public class Lighting {
 		this.lightingColor = lightingColor;
 	}
 
-	public int getPowerConsumption() {
+	public Integer getPowerConsumption() {
 		return powerConsumption;
 	}
 
-	public void setPowerConsumption(int powerConsumption) {
+	public void setPowerConsumption(Integer powerConsumption) {
 		this.powerConsumption = powerConsumption;
 	}
 
-	public int getLampPower() {
+	public Integer getLampPower() {
 		return lampPower;
 	}
 
-	public void setLampPower(int lampPower) {
+	public void setLampPower(Integer lampPower) {
 		this.lampPower = lampPower;
 	}
 
@@ -72,22 +92,5 @@ public class Lighting {
 
 	
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	@Column(name="lighting_color")
-	@NotNull
-	private String lightingColor;
-	@NotNull
-	@Column(name="power_consumption")
-	private int powerConsumption;
-	@NotNull
-	@Column(name="lamp_power")
-	private int lampPower;
-	@NotNull
-	@Column(name="device_size")
-	private String deviceSize;
 	
-	@OneToMany(mappedBy = "lighting", cascade = CascadeType.ALL)
-	private List<Device> devices=new ArrayList<Device>();
 }

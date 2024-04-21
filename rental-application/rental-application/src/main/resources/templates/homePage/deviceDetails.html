@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szczegóły urządzenia</title>
+</head>
+<body>
+	<div>
+		<h4>Opis</h4>
+		<p th:text="${device.description}"></p>
+		<h4>Cena</h4>
+		<p th:text="${device.price}"></p>
+		<h4>Kaucja</h4>
+		<p th:text="${device.deposit}"></p>
+	</div>
+	<h2>Dane techniczne</h2>
+    <div th:if="${device.category.name=='telewizor'}">
+		<h5>Rozmiar ekranu</h5>
+        <p th:text="${device.imageDisplay.screenSize}"></p> 
+	    <p th:text="${device.imageDisplay.screenResolution}"></p>
+	    <p th:text="${device.imageDisplay.refreshRate}"></p>
+    </div>
+    <div th:if="${device.category.name=='laptop'}">
+		<p th:text="${device.computer.operatingSystem}"></p>
+		<p th:text="${device.computer.display}"></p>
+		<p th:text="${device.computer.drive}"></p>
+		<p th:text="${device.computer.graphicsCard}"></p>
+		<p th:text="${device.computer.procesor}"></p>
+		<p th:text="${device.computer.ram}"></p>
+	</div>
+	<div th:if="${device.category.name=='tablet'}">
+		<p th:text="${device.computer.operatingSystem}"></p>
+		<p th:text="${device.computer.display}"></p>
+		<p th:text="${device.computer.drive}"></p>
+		<p th:text="${device.computer.procesor}"></p>
+		<p th:text="${device.computer.ram}"></p>
+	</div>
+	<div th:if="${device.category.name=='monitor'}">
+		<p th:text="${device.imageDisplay.screenSize}"></p>
+	    <p th:text="${device.imageDisplay.screenResolution}"></p>
+	    <p th:text="${device.imageDisplay.refreshRate}"></p>
+	</div>
+	<div th:if="${device.category.name=='ekran'}">
+		<p th:text="${device.imageDisplay.screenFormat}"></p>
+        <p th:text="${device.imageDisplay.screenSize}"></p>
+        <p th:text="${device.imageDisplay.activeSurface}"></p>
+	</div>
+	<div th:if="${device.category.name=='projektor multimedialny'}">
+		<p th:text="${device.imageDisplay.matrixType}"></p>
+        <p th:text="${device.imageDisplay.lampPower}"></p>
+        <p th:text="${device.imageDisplay.screenResolution}"></p>
+	</div>
+	<div th:if="${device.category.name=='oświetlenie'}">
+		<p th:text="${device.lighting.deviceSize}"></p>
+		<p th:text="${device.lighting.lampPower}"></p>
+		<p th:text="${device.lighting.lightingColor}"></p>
+		<p th:text="${device.lighting.powerConsumption}"></p>
+	</div>
+	<div th:if="${device.category.name=='kamera'}">
+		<p th:text="${device.camera.imageStabilization}"></p>
+		<p th:text="${device.camera.opticalZoom}"></p>
+		<p th:text="${device.camera.resolution}"></p>
+	</div>
+	<div th:if="${device.category.name=='nagłośnienie'}">
+		<p th:text="${device.audioDevice.speakersPower}"></p>
+        <p th:text="${device.audioDevice.numberOfspeakers}"></p>
+	</div>
+	<div th:if="${device.category.name=='mikrofon'}">
+		<p th:text="${device.audioDevice.microphoneType}"></p>
+        <p th:text="${device.audioDevice.frequencyResponse}"></p>
+        <p th:text="${device.audioDevice.wirelessTransmission}"></p>
+	</div>
+	<div th:if="${device.category.name=='słuchawki'}">
+		<p th:text="${device.audioDevice.headphoneType}"></p>
+		<p th:text="${device.audioDevice.microphone}"></p>
+		<p th:text="${device.audioDevice.wirelessTransmission}"></p>
+		<p th:text="${device.audioDevice.workingTime}"></p>
+	</div>
+	<div>
+		<h2>Wybierz ilość</h2>
+	</div>
+	<div>
+		<h2>Dostępność</h2>
+	</div>
+	<div>
+		<form th:action="@{/homePage/addToCart/{id}(id=${device.id})}" method="post">
+			<button>Dodaj do koszyka</button>
+		</form>
+		<form th:action="@{/homePage/addToFavouriteList/{id}(id=${device.id})}" method="post">
+			<button>Dodaj do ulubionych</button>
+		</form>
+	</div>
+</body>
+</html>

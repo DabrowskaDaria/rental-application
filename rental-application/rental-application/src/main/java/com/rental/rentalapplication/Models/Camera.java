@@ -12,20 +12,38 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+
 
 @Entity
 @Table(name="camera")
 public class Camera {
-	public Camera(@NotNull String resolution, @NotNull boolean imageStabilization, @NotNull boolean opticalZoom) {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@NotNull
+	private String resolution;
+	@NotNull
+	@Column(name="image_stablization")
+	private Boolean imageStabilization;
+	@NotNull
+	@Column(name = "optical_zoom")
+	private Boolean opticalZoom;
+	
+	@OneToMany(mappedBy = "camera", cascade = CascadeType.ALL)
+	private List <Device> devices= new ArrayList<Device>();
+	
+	public Camera() {
+		super();
+	}
+	
+	public Camera(@NotNull String resolution, @NotNull Boolean imageStabilization, @NotNull Boolean opticalZoom) {
 		super();
 		this.resolution = resolution;
 		this.imageStabilization = imageStabilization;
 		this.opticalZoom = opticalZoom;
 	}
 
+	
 	public Integer getId() {
 		return id;
 	}
@@ -42,19 +60,19 @@ public class Camera {
 		this.resolution = resolution;
 	}
 
-	public boolean isImageStabilization() {
+	public Boolean isImageStabilization() {
 		return imageStabilization;
 	}
 
-	public void setImageStabilization(boolean imageStabilization) {
+	public void setImageStabilization(Boolean imageStabilization) {
 		this.imageStabilization = imageStabilization;
 	}
 
-	public boolean isOpticalZoom() {
+	public Boolean isOpticalZoom() {
 		return opticalZoom;
 	}
 
-	public void setOpticalZoom(boolean opticalZoom) {
+	public void setOpticalZoom(Boolean opticalZoom) {
 		this.opticalZoom = opticalZoom;
 	}
 
@@ -66,27 +84,7 @@ public class Camera {
 		this.devices = devices;
 	}
 
-	public Camera(@NotNull String resolution, @NotNull boolean imageStabilization, @NotNull boolean opticalZoom,
-			List<Device> devices) {
-		super();
-		this.resolution = resolution;
-		this.imageStabilization = imageStabilization;
-		this.opticalZoom = opticalZoom;
-		this.devices = devices;
-	}
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	@NotNull
-	private String resolution;
-	@NotNull
-	@Column(name="image_stabilization")
-	private boolean imageStabilization;
-	@NotNull
-	@Column(name = "optical_zoom")
-	private boolean opticalZoom;
 	
-	@OneToMany(mappedBy = "camera", cascade = CascadeType.ALL)
-	private List <Device> devices= new ArrayList<Device>();
+
+	
 }

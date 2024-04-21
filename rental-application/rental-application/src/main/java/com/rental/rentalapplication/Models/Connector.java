@@ -11,14 +11,29 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
 
 @Entity
 @Table(name="connectors")
 public class Connector {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@NotNull
+	private String name;
+	
+	@OneToMany(mappedBy = "connector", cascade = CascadeType.ALL)
+	private List<DeviceConnector> deviceConnectors=new ArrayList<DeviceConnector>();
+	
+	public Connector() {
+		super();
+	}
+	
+	public void addDeviceConnectors(DeviceConnector deviceConnector) {
+		deviceConnectors.add(deviceConnector);
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -48,12 +63,5 @@ public class Connector {
 		this.name = name;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	@NotNull
-	private String name;
 	
-	@OneToMany(mappedBy = "connector", cascade = CascadeType.ALL)
-	private List<DeviceConnector> deviceConnectors=new ArrayList<DeviceConnector>();
 }

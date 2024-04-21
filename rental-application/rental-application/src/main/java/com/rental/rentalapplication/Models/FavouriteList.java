@@ -13,14 +13,38 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
 
 @AllArgsConstructor
 @Entity
 @Table(name="favourites_lists")
 public class FavouriteList {
+	
+	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@OneToMany(mappedBy = "favouriteList", cascade = CascadeType.ALL)
+	List<DeviceFavouriteList> deviceFavouriteLists = new ArrayList<DeviceFavouriteList>();
+	
+	@OneToOne
+	@JoinColumn(name="fk_users_id")
+	private User user;
+	
+	public FavouriteList(User user) {
+		super();
+		this.user = user;
+	}
+	public FavouriteList() {
+		super();
+	}
+	
+	public void addDeviceFavouriteList(DeviceFavouriteList favouriteList) {
+		deviceFavouriteLists.add(favouriteList);
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -45,14 +69,5 @@ public class FavouriteList {
 		this.user = user;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
 	
-	@OneToMany(mappedBy = "favouriteList", cascade = CascadeType.ALL)
-	List<DeviceFavouriteList> deviceFavouriteLists = new ArrayList<DeviceFavouriteList>();
-	
-	@OneToOne
-	@JoinColumn(name="fk_users_id")
-	private User user;
 }

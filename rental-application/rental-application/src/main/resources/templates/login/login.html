@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
+    <title>Zaloguj</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/c977772a14.js" crossorigin="anonymous"></script>
+    <div class="login">
+        <form action="#">
+            <h2>Zaloguj się</h2>
+            <div class="login-form-input">
+                <input type="email" placeholder="Email" required>
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="login-form-input">  
+                <input type="password" placeholder="Hasło" required>
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <div class="login-forgot-password">
+                <a href="#">Przypomnij hasło</a>
+            </div>
+            <div class="login-button">
+                <button type="submit">Zaloguj się</button>
+            </div>
+            <div class="login-register">
+                <p>Nie posiadasz konta?
+                    <a href="#">Zarejestruj się</a>
+                </p>
+                
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

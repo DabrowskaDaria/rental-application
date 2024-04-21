@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,12 +16,16 @@
                         th:each="category : ${categories}"
                         th:value="${category.id}"
                         th:text="${category.name}"
-                        th:data-name="${category.name}"
-                    ></option>
+                        th:data-name="${category.name}">
+                    </option>
                                         
                 </select>
             </div>
             <div id="showTechnicalData">
+
+            </div>
+            <div id="selectContainer"></div>
+            <div id="selectOperatingSystem" th:attr="data-options=${operatingSystem}">
 
             </div>
             <div class="addDevice-input">
@@ -34,15 +38,11 @@
                 <input type="number" min="0" step="1" placeholder="Kaucja" th:field="${deviceDto.deposit}">
             </div>
             <div class="addDevice-textarea">
-                <textarea placeholder="Podaj opis" name="description" id="description"></textarea>
+                <textarea placeholder="Podaj opis" name="description" id="description" th:field="${deviceDto.description}"></textarea>
             </div>
             <div class="choose-connector">
-                <select>
-                    <option value="hdmi">HDMI</option>
-                    <option value="usb">USB</option>
-                    <option value="ethernet">Ethernet</option>
-                    <option value="jack">Combo jack</option>
-                    <option value="brak">Brak</option>
+                <select name="connectors" th:field="*{connectors}" multiple>
+                    <option th:each="connector : ${connectors}" th:value="${connector.id}" th:text="${connector.name}"></option>
                 </select>
             </div>
             <div class="addDevice-button">
@@ -51,7 +51,7 @@
         </form>
     </div>
 
-    <script type="text/javascript" >
+    <script type="text/javascript" th:inline="javascript">
         function changeTechnicalDataFields() {
             const selectedCategoryId = document.getElementById('category').value;
             const categoryObj = document.querySelector(`#category > option[value="${selectedCategoryId}"]`);
@@ -71,10 +71,10 @@
                     break;
                 case 'laptop':
                     formHtml += '<div class="addDevice-input"><input type="text" placeholder="Ekran" name="technicalDetails[display]"></div>';
-                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Procesor" name="technicalDetails[processor]"></div>';
+                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Procesor" name="technicalDetails[procesor]"></div>';
                     formHtml += '<div class="addDevice-input"><input type="text" placeholder="Dysk" name="technicalDetails[drive]"></div>';
                     formHtml += '<div class="addDevice-input"><input type="number" min="0" step="1" placeholder="RAM" name="technicalDetails[ram]"></div>';
-                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Karta graficzna" name="technicalDetails[graphicCard]"></div>';
+                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Karta graficzna" name="technicalDetails[graphicsCard]"></div>';
                     formHtml += '<div class="addDevice-input"><input type="text" placeholder="System operacyjny" name="technicalDetails[operatingSystem]"></div>';
                     break;
                 case 'monitor':
@@ -83,9 +83,8 @@
                     formHtml += '<div class="addDevice-input"><input type="number" min="0" step="1" placeholder="Częstotliwość odświeżania" name="technicalDetails[refreshRate]" id="refreshRate"></div>';
                     break;
                 case 'nagłośnienie':
-                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Moc głośników" name="technicalDetails[speakresPower]"></div>';
-                    formHtml += '<div class="addDevice-input"><input type="number" min="0" step="1" placeholder="Ilość głośników" name="technicalDetails[numberOfSpeakers]"></div>';
-                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Typ podłączenia" name="technicalDetails[connectionType]"></div>';
+                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Moc głośników" name="technicalDetails[speakersPower]"></div>';
+                    formHtml += '<div class="addDevice-input"><input type="number" min="0" step="1" placeholder="Ilość głośników" name="technicalDetails[numberOfspeakers]"></div>';
                     break;
                 case 'projektor multimedialny':
                     formHtml += '<div class="addDevice-input"><input type="text" placeholder="Typ matrycy" name="technicalDetails[matrixType]"></div>';
@@ -93,9 +92,9 @@
                     formHtml += '<div class="addDevice-input"><input type="text" placeholder="Rozdzielczość" name="technicalDetails[screenResolution]"></div>';
                     break;
                 case 'ekran':
-                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Format" name="technicalDetails[format]"></div>';
+                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Format" name="technicalDetails[screenFormat]"></div>';
                     formHtml += '<div class="addDevice-input"><input type="text" placeholder="Rozmiar" name="technicalDetails[screenSize]"></div>';
-                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Wymiar powierzchni aktywnej" name="technicalDetails[activeSurfaceac]"></div>';
+                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Wymiar powierzchni aktywnej" name="technicalDetails[activeSurface]"></div>';
                     break;
                 case 'oświetlenie':
                     formHtml += '<div class="addDevice-input"><input type="text" placeholder="Kolor światła" name="technicalDetails[lightingColor]"></div>';
@@ -105,30 +104,43 @@
                     break;
                 case 'słuchawki':
                     formHtml += '<div class="addDevice-input"><input type="text" placeholder="Typ Słuchawek" name="technicalDetails[headphoneType]"></div>';
-                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Mikrofon" name="technicalDetails[microphone]"></div>';
-                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Bezprzewodowe" name="technicalDetails[wirelessTransmission]"></div>';
+                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="czy Mikrofon" name="technicalDetails[microphone]"></div>';
+                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="czy Bezprzewodowe" name="technicalDetails[wirelessTransmission]"></div>';
                     formHtml += '<div class="addDevice-input"><input type="number" min="0" step="1" placeholder="Czas pracy" name="technicalDetails[workingTime]"></div>';
                     break;
                 case 'tablet':
                     formHtml += '<div class="addDevice-input"><input type="text" placeholder="System operacyjny" name="technicalDetails[operatingSystem]"></div>';
                     formHtml += '<div class="addDevice-input"><input type="text" placeholder="Dysk" name="technicalDetails[drive]"></div>';
                     formHtml += '<div class="addDevice-input"><input type="number" min="0" step="1" placeholder="RAM" name="technicalDetails[ram]"></div>';
-                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Procesor" name="technicalDetails[processor]"></div>';
+                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Procesor" name="technicalDetails[procesor]"></div>';
                     formHtml += '<div class="addDevice-input"><input type="text" placeholder="Wyświetlacz" name="technicalDetails[display]"></div>';
                     break;
                 case 'kamera':
-                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Rozdzielczość" name="technicalDetails.resolution"></div>';
-                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Stabilizacja obrazu" name="technicalDetails.imageStabilization"></div>';
-                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Zbliżenie optyczne" name="technicalDetails.opticalZoom"></div>';
+                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Rozdzielczość" name="technicalDetails[resolution]"></div>';
+                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="czy Stabilizacja obrazu" name="technicalDetails[imageStabilization]"></div>';
+                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="czy Zbliżenie optyczne" name="technicalDetails[opticalZoom]"></div>';
                     break;
                 case 'mikrofon':
-                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Rodzaj mikrofonu" name="technicalDetails.microphoneType"></div>';
-                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Pasmo przenoszenia" name="technicalDetails.frequencyResponse"></div>';
-                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Typ podłączenia" name="technicalDetails.wirelessTransmision"></div>';
+                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Rodzaj mikrofonu" name="technicalDetails[microphoneType]"></div>';
+                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="Pasmo przenoszenia" name="technicalDetails[frequencyResponse]"></div>';
+                    formHtml += '<div class="addDevice-input"><input type="text" placeholder="czy bezprzewodowy" name="technicalDetails[wirelessTransmission]"></div>';
                     break;
             }
 
             return formHtml;
+        }
+        
+            var optionsElement = document.getElementById('selectOperatingSystem');
+            var optionsData = JSON.parse(optionsElement.getAttribute('data-options'));
+        function addOperatingSystemSelect(){
+            var nowySelect = document.createElement('select');
+            optionsData.forEach(function(operatingSystem) {
+                var nowaOpcja = document.createElement('option');
+                nowaOpcja.value = operatingSystem.id; // Wartość opcji (id)
+                nowaOpcja.textContent = operatingSystem.nazwa; // Tekst opcji
+                nowySelect.appendChild(nowaOpcja);
+            });
+            document.getElementById('selectContainer').appendChild(nowySelect);
         }
     </script>
 </body>

@@ -12,14 +12,38 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
 
 @Entity
 @Table(name="carts")
 public class Cart {
+	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+	List<DeviceCart> deviceCart= new ArrayList<DeviceCart>();
+	
+	@OneToOne
+	@JoinColumn(name="fk_users_id")
+	private User user;
+	
+
+	public Cart() {
+		super();
+	}
+
+	public Cart(User user) {
+		super();
+		this.user = user;
+	}
+	
+	public void addDeviceCart(DeviceCart deviceCart) {
+		this.deviceCart.add(deviceCart);
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -44,14 +68,5 @@ public class Cart {
 		this.user = user;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
 	
-	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-	List<DeviceCart> deviceCart= new ArrayList<DeviceCart>();
-	
-	@OneToOne
-	@JoinColumn(name="fk_users_id")
-	private User user;
 }

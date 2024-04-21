@@ -38,7 +38,7 @@ public class User {
 	private String password;
 	
 	@Column(name="account_type")
-	
+	@NotNull
 	private String accountType;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -55,6 +55,11 @@ public class User {
 
 	public User() {
 		super();
+	}
+	public User(@NotNull String email, @NotNull String password) {
+		super();
+		this.email = email;
+		this.password = password;
 	}
 
 	public Integer getId() {
@@ -129,11 +134,7 @@ public class User {
 		this.accountType = accountType;
 	}
 
-	public User(@NotNull String email, @NotNull String password) {
-		super();
-		this.email = email;
-		this.password = password;
-	}
+	
 
 	
 }

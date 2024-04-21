@@ -11,6 +11,19 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="devices_rentals")
 public class DeviceRental {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@ManyToOne
+	@JoinColumn(name="fk_rentals_id")
+	private Rental rental;
+	
+	@ManyToOne
+	@JoinColumn(name="fk_devices_id")
+	private Device device;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -35,15 +48,5 @@ public class DeviceRental {
 		this.device = device;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
 	
-	@ManyToOne
-	@JoinColumn(name="fk_rentals_id")
-	private Rental rental;
-	
-	@ManyToOne
-	@JoinColumn(name="fk_devices_id")
-	private Device device;
 }

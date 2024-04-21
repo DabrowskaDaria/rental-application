@@ -7,15 +7,35 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
-
-@AllArgsConstructor
 @Entity
 @Table(name="devices_carts")
 public class DeviceCart {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@ManyToOne
+	@JoinColumn(name="fk_cart_id")
+	private Cart cart;
+	
+	@ManyToOne
+	@JoinColumn(name="fk_devices_id")
+	private Device device;
+	
+	public DeviceCart() {
+		super();
+	}
+
+
+	public DeviceCart(Cart cart, Device device) {
+		super();
+		this.cart = cart;
+		this.device = device;
+	}
+
+	
 	public Integer getId() {
 		return id;
 	}
@@ -40,16 +60,6 @@ public class DeviceCart {
 		this.device = device;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
 	
-	@ManyToOne
-	@JoinColumn(name="fk_cart_id")
-	private Cart cart;
-	
-	@ManyToOne
-	@JoinColumn(name="fk_devices_id")
-	private Device device;
 	
 }

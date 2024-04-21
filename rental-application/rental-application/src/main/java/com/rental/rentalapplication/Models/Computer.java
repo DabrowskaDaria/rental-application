@@ -9,40 +9,45 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+
 
 
 @Entity
 @Table(name="computers_and_tablets")
 public class Computer {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	@NotNull
 	private String display;
+	
 	@NotNull
 	private String procesor;
+	
 	@NotNull
 	private String drive;
+	
 	@NotNull
 	@Column(name="RAM")
 	private int ram;
-	@Column(name="graphics_card")
+
+	@Column(name="graphics_card", nullable = true)
 	private String graphicsCard;
+	
 	@NotNull
 	@Column(name="operating_system")
 	private String operatingSystem;
-	@OneToMany(mappedBy = "computer", cascade = CascadeType.ALL )
 	
+	@OneToMany(mappedBy = "computer", cascade = CascadeType.ALL )
 	private List<Device> devices= new ArrayList<Device>();
 	
-	
-	public Computer(@NotNull String display, @NotNull String procesor, @NotNull String drive, @NotNull int ram,
+	public Computer(@NotNull String display, @NotNull String procesor, @NotNull String drive, @NotNull Integer ram,
 			String graphicsCard, @NotNull String operatingSystem) {
 		super();
 		this.display = display;
@@ -53,8 +58,11 @@ public class Computer {
 		this.operatingSystem = operatingSystem;
 	}
 	
-	public Computer(@NotNull String display, @NotNull String procesor, @NotNull String drive, @NotNull int ram,
-			@NotNull String operatingSystem) {
+	public Computer() {
+		super();
+	}
+
+	public Computer(@NotNull String display, @NotNull String procesor, @NotNull String drive, @NotNull Integer ram, @NotNull String operatingSystem) {
 		super();
 		this.display = display;
 		this.procesor = procesor;
@@ -87,10 +95,10 @@ public class Computer {
 	public void setDrive(String drive) {
 		this.drive = drive;
 	}
-	public int getRam() {
+	public Integer getRam() {
 		return ram;
 	}
-	public void setRam(int ram) {
+	public void setRam(Integer ram) {
 		this.ram = ram;
 	}
 	public String getGraphicsCard() {
@@ -99,18 +107,23 @@ public class Computer {
 	public void setGraphicsCard(String graphicsCard) {
 		this.graphicsCard = graphicsCard;
 	}
-	public String getOperatingSystem() {
-		return operatingSystem;
-	}
-	public void setOperatingSystem(String operatingSystem) {
-		this.operatingSystem = operatingSystem;
-	}
+	
 	public List<Device> getDevices() {
 		return devices;
 	}
 	public void setDevices(List<Device> devices) {
 		this.devices = devices;
 	}
+
+	public String getOperatingSystem() {
+		return operatingSystem;
+	}
+
+	public void setOperatingSystem(String operatingSystem) {
+		this.operatingSystem = operatingSystem;
+	}
+
+	
 	
 	
 }

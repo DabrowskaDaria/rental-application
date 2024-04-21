@@ -23,24 +23,27 @@ public class Person {
 	@NotNull
 	@Column(name="first_name")
 	private String firstName;
+	
 	@NotNull
 	private String surname;
 	
-	@Column(name="pesel_number")
+	@Column(name="pesel_number", nullable = true)
 	private String pesel;
 	
-	@Column(name="phone_number")
+	@Column(name="phone_number", nullable = true)
 	@NotNull
 	private String phoneNumber;
 	
+	@Column(nullable = true)
 	private String place;
 	
+	@Column(nullable = true)
 	private String street;
 	
-	@Column(name="house_number")
-	private int houseNumber;
+	@Column(name="house_number", nullable = true)
+	private String houseNumber;
 	
-	@Column(name="zip_code")
+	@Column(name="zip_code", nullable = true)
 	private String zipCode;
 	
 	@OneToOne
@@ -99,11 +102,11 @@ public class Person {
 		this.street = street;
 	}
 
-	public int getHouseNumber() {
+	public String getHouseNumber() {
 		return houseNumber;
 	}
 
-	public void setHouseNumber(int houseNumber) {
+	public void setHouseNumber(String houseNumber) {
 		this.houseNumber = houseNumber;
 	}
 
