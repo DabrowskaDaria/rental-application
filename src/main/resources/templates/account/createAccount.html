@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +21,7 @@
                 <div class="create-account-input">
                     <input type="text" placeholder="Imię"  th:field="${userPersonDto.firstName}">
      				<i class="fa-solid fa-user"></i>
+
               		<p th:if="${#fields.hasErrors('firstName')}" th:errorclass="text-danger" th:errors="${userPersonDto.firstName}"></p>
                 </div> 
                 <div class="create-account-input">

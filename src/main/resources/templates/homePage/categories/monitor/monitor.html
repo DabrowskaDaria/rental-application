@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitory</title>
+</head>
+<body>
+    <div >
+		<table>
+			<tr th:each="device : ${devices}" th:if="${device.category.name=='monitor'}">
+				<td th:text="${device.id}"></td>
+				<td th:text="${device.name}"></td>
+				<td th:text="${device.price}"></td>
+				<td th:text="${device.deposit}"></td>
+				<td>
+					<form th:action="@{/homePage/showDetails/{id}(id=${device.id})}" method="get">	
+					<button type="submit">Pokaż szczegóły</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
+

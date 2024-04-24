@@ -8,15 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 import com.rental.rentalapplication.DTO.UserPersonDto;
-
+import com.rental.rentalapplication.Models.AccountType;
 import com.rental.rentalapplication.Models.User;
-
+import com.rental.rentalapplication.Repository.AccountTypeRepository;
 import com.rental.rentalapplication.Services.UserManager;
 
 import jakarta.validation.Valid;
@@ -30,6 +31,9 @@ public class UserController {
 	@Autowired
 	private UserManager userManager;
 	
+	@Autowired
+	AccountTypeRepository accountTypeRepo;
+	
 	@GetMapping("/create")
 	public String showCreateAccountPage(Model model) {
 		model.addAttribute("userPersonDto", new UserPersonDto() );
@@ -39,7 +43,7 @@ public class UserController {
 	@PostMapping("/create")
 	public String createAccount(@Valid @ModelAttribute UserPersonDto userPersonDto, BindingResult result){
 		if(result.hasErrors()) {
-			return "redirect:/account/create";
+			return "/account/createAccount";
 		}
 		userManager.addAccount(userPersonDto);
 		return "redirect:/account/create";
@@ -49,16 +53,18 @@ public class UserController {
 	@GetMapping("/add")
 	public String showAddUserPage(Model model) {
 		UserPersonDto userPersonDto= new UserPersonDto();
+		List<AccountType> accountTypes=accountTypeRepo.findAll();
 		model.addAttribute("userPersonDto", userPersonDto);
-		return "/account/addUser";
+		model.addAttribute("accountTypes", accountTypes);
+		return "account/addUser";
 	}
 	
 	@PostMapping("/add")
-	public String addUser(@Valid @ModelAttribute UserPersonDto userPersonDto, @RequestParam("selectedOption") String selectedOption,BindingResult result) {
+	public String addUser(@Valid @ModelAttribute UserPersonDto userPersonDto,BindingResult result, @RequestParam("accountType") String accountType) {
 		if(result.hasErrors()) {
-			return "redirect:/account/addUser";
+			return "/account/addUser";
 		}
-		userManager.addUser(userPersonDto, selectedOption);
+		userManager.addUser(userPersonDto, accountType);
 		return "redirect:/account/add";
 	}
 	
@@ -70,10 +76,26 @@ public class UserController {
 		return "account/showUsers";
 	}
 	
-	@GetMapping("/delete")
-	public String deleteProduct(@RequestParam int id) {
+	@PostMapping("/delete/{id}/delete")
+	public String deleteUser(@PathVariable Integer id) {
 		
 		userManager.deleteUser(id);
 		return "redirect:/account/showUsers";
+	}
+	
+	@GetMapping("/edit")
+	public String showEditDataForm(Model model){
+		model.addAttribute("userPersonDto", new UserPersonDto());
+		
+		return "account/editData";
+	}
+	
+	@PostMapping("/edit")
+	public String editData(@Valid @ModelAttribute UserPersonDto userPersonDto,BindingResult result,@RequestParam int id) {
+		if(result.hasErrors()) {
+			return"/account/editData";
+		}
+		userManager.editData(userPersonDto, id);
+		return"redirect:/account/edit";
 	}
 }

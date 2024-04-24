@@ -7,17 +7,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
+
 @Entity
 @Table(name="devices_connectors")
 public class DeviceConnector {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -28,4 +24,33 @@ public class DeviceConnector {
 	@ManyToOne
 	@JoinColumn(name="fk_devices_id")
 	private Device device;
+	
+	public DeviceConnector() {
+		super();
+	}
+	public DeviceConnector(Connector connector, Device device) {
+		super();
+		this.connector = connector;
+		this.device = device;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Connector getConnector() {
+		return connector;
+	}
+	public void setConnector(Connector connector) {
+		this.connector = connector;
+	}
+	public Device getDevice() {
+		return device;
+	}
+	public void setDevice(Device device) {
+		this.device = device;
+	}
+	
 }

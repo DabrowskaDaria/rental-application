@@ -12,35 +12,79 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-@Getter
-@Setter
+
+
 @Entity
 @Table(name="camera")
 public class Camera {
-	public Camera(@NotNull String resolution, @NotNull boolean imageStabilization, @NotNull boolean opticalZoom,
-			List<Device> devices) {
-		super();
-		this.resolution = resolution;
-		this.imageStabilization = imageStabilization;
-		this.opticalZoom = opticalZoom;
-		this.devices = devices;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@NotNull
 	private String resolution;
 	@NotNull
-	@Column(name="image_stabilization")
-	private boolean imageStabilization;
+	@Column(name="image_stablization")
+	private Boolean imageStabilization;
 	@NotNull
 	@Column(name = "optical_zoom")
-	private boolean opticalZoom;
+	private Boolean opticalZoom;
 	
 	@OneToMany(mappedBy = "camera", cascade = CascadeType.ALL)
 	private List <Device> devices= new ArrayList<Device>();
+	
+	public Camera() {
+		super();
+	}
+	
+	public Camera(@NotNull String resolution, @NotNull Boolean imageStabilization, @NotNull Boolean opticalZoom) {
+		super();
+		this.resolution = resolution;
+		this.imageStabilization = imageStabilization;
+		this.opticalZoom = opticalZoom;
+	}
+
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getResolution() {
+		return resolution;
+	}
+
+	public void setResolution(String resolution) {
+		this.resolution = resolution;
+	}
+
+	public Boolean isImageStabilization() {
+		return imageStabilization;
+	}
+
+	public void setImageStabilization(Boolean imageStabilization) {
+		this.imageStabilization = imageStabilization;
+	}
+
+	public Boolean isOpticalZoom() {
+		return opticalZoom;
+	}
+
+	public void setOpticalZoom(Boolean opticalZoom) {
+		this.opticalZoom = opticalZoom;
+	}
+
+	public List<Device> getDevices() {
+		return devices;
+	}
+
+	public void setDevices(List<Device> devices) {
+		this.devices = devices;
+	}
+
+	
+
+	
 }

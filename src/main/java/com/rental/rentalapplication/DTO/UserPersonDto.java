@@ -1,33 +1,38 @@
 package com.rental.rentalapplication.DTO;
 
+import com.rental.rentalapplication.Models.AccountType;
+
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+
 public class UserPersonDto {
 	
-	@NotNull(message="Pole jest wymagane")
+	@NotEmpty(message="Pole nie może być puste")
 	@Email(message="Niepoprawny Email")
 	private String email;
 	
-	@NotNull(message="Pole jest wymagane")
-
+	@NotEmpty(message="Pole nie może być puste")
 	@Size(min=8, message="Hasło musi mieć co najmniej 8 znaków")
 	@Pattern(regexp = "^(?=.*[A-Z])(?=.*\\d.*\\d)(?=.*[@#$%^&+=!])(?=.*[a-zA-Z]).{8,}$",message="Hasło nie spełnia zasad złożoności")
 	private String password;
 	
-	@NotNull(message="Pole jest wymagane")
-	@Size(min=3, message="Pole za krótkie")
+	@NotEmpty(message="Pole nie może być puste")
+	@Size(min=3, message="Imię musi mieć co najmniej 3 znaki")
 	private String firstName;
 	
-	@Size(min=3, message="Pole za krótkie")
-	@NotNull(message="Pole jest wymagane")
+	@NotEmpty(message="Pole nie może być puste")
+	@Size(min=3, message="Nazwisko musi mieć co najmniej 3 znaki")
 	private String surname;
 	
-	@NotNull(message="Pole jest wymagane")
+	@NotEmpty(message="Pole nie może być puste")
 	@Size(min=9, message="Za krótki numer telefonu")
+	@Pattern(regexp ="\\d{9,}", message="numer telefonu musi zawierać cyfry")
 	private String phoneNumber;
+	
+	private AccountType accountType;
 	
 	public String getFirstName() {
 		return firstName;
@@ -67,6 +72,14 @@ public class UserPersonDto {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public AccountType getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(AccountType accountType) {
+		this.accountType = accountType;
 	}
 
 	

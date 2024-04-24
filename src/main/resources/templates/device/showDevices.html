@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Urządzenia</title>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nazwa</th>
+                <th>Cena</th>
+                <th>Kaucja</th>
+                <th>Opis</th>
+                <th>Kategoria</th>
+                <th>Dane techniczne</th>
+                <th>Akcja</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="device : ${devices}">
+                <td th:text="${device.id}"></td>
+                <td th:text="${device.name}"></td>
+                <td th:text="${device.price}"></td>
+                <td th:text="${device.deposit}"></td>
+                <td th:text="${device.description}"></td>
+                <td th:text="${device.category.name}"></td>
+                <td th:if="${device.category.name=='telewizor'}">
+					<table>
+						<thead>
+							<tr>
+								<th>Rozmiar ekranu</th>
+								<th>Rozdzielczość ekranu</th>
+								<th>Częstotliwość odświerzania</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${device.imageDisplay.screenSize}"></td>
+	                    		<td th:text="${device.imageDisplay.screenResolution}"></td>
+	                    		<td th:text="${device.imageDisplay.refreshRate}"></td>
+	
+						</tr>
+						</tbody>
+					</table>
+				</td>
+				
+				<td th:if="${device.category.name=='monitor'}">
+					<table>
+						<thead>
+							<tr>
+								<th>Rozmiar ekranu</th>
+								<th>Rozdzielczość ekranu</th>
+								<th>Częstotliwość odświerzania</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${device.imageDisplay.screenSize}"></td>
+	                    		<td th:text="${device.imageDisplay.screenResolution}"></td>
+	                    		<td th:text="${device.imageDisplay.refreshRate}"></td>
+	
+						</tr>
+						</tbody>
+					</table>
+				</td>
+                <td th:if="${device.category.name=='ekran'}">
+					<table>
+						<thead>
+							<tr>
+								<th>Format</th>
+								<th>Rozmiar ekranu</th>
+								<th>Powierzchnia aktywna</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${device.imageDisplay.screenFormat}"></td>
+                    			<td th:text="${device.imageDisplay.screenSize}"></td>
+                    			<td th:text="${device.imageDisplay.activeSurface}"></td>
+						</tr>
+						</tbody>
+					</table>
+				</td>
+				<td th:if="${device.category.name=='projektor multimedialny'}">
+					<table>
+						<thead>
+							<tr>
+								<th>Typ matrycy</th>
+								<th>Moc lampy</th>
+								<th>Rozdzielczość ekranu</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${device.imageDisplay.matrixType}"></td>
+                    			<td th:text="${device.imageDisplay.lampPower}"></td>
+                    			<td th:text="${device.imageDisplay.screenResolution}"></td>
+						</tr>
+						</tbody>
+					</table>
+				</td>
+                <td th:if="${device.category.name=='laptop'}">
+					<table>
+						<thead>
+							<tr>
+								<th>System operacyjny</th>
+								<th>Wyświetlacz</th>
+								<th>Dysk</th>
+								<th>Karta graficzna</th>
+								<th>Procesor</th>
+								<th>Ram</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${device.computer.operatingSystem}"></td>
+			                    <td th:text="${device.computer.display}"></td>
+			                    <td th:text="${device.computer.drive}"></td>
+			                    <td th:text="${device.computer.graphicsCard}"></td>
+			                    <td th:text="${device.computer.processor}"></td>
+			                    <td th:text="${device.computer.ram}"></td>
+						</tr>
+						</tbody>
+					</table>
+				</td>
+                <td th:if="${device.category.name=='tablet'}">
+					<table>
+						<thead>
+							<tr>
+								<th>System operacyjny</th>
+								<th>Wyświetlacz</th>
+								<th>Dysk</th>
+								<th>Procesor</th>
+								<th>Ram</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${device.computer.operatingSystem}"></td>
+			                    <td th:text="${device.computer.display}"></td>
+			                    <td th:text="${device.computer.drive}"></td>
+			                    <td th:text="${device.computer.processor}"></td>
+			                    <td th:text="${device.computer.ram}"></td>
+						</tr>
+						</tbody>
+					</table>
+				</td>
+                <td th:if="${device.category.name=='oświetlenie'}">
+					<table>
+						<thead>
+							<tr>
+								<th>Rozmiar urządzenia</th>
+								<th>Moc lampy</th>
+								<th>Kolor światła</th>
+								<th>Zużycie prądu</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${device.lighting.deviceSize}"></td>
+			                    <td th:text="${device.lighting.lampPower}"></td>
+			                    <td th:text="${device.lighting.lightingColor}"></td>
+			                    <td th:text="${device.lighting.powerConsumption}"></td>
+						</tr>
+						</tbody>
+					</table>
+				</td>
+                <td th:if="${device.category.name=='kamera'}">
+					<table>
+						<thead>
+							<tr>
+								<th>Stabilizacja obrazu</th>
+								<th>Zoom optyczny</th>
+								<th>Rozdzielczość</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${device.camera.imageStabilization}"></td>
+			                    <td th:text="${device.camera.opticalZoom}"></td>
+			                    <td th:text="${device.camera.resolution}"></td>
+						</tr>
+						</tbody>
+					</table>
+				</td>
+				<td th:if="${device.category.name=='nagłośnienie'}">
+					<table>
+						<thead>
+							<tr>
+								<th>Moc głośników</th>
+								<th>Liczba głośników</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${device.audioDevice.speakersPower}"></td>
+                    			<td th:text="${device.audioDevice.numberOfspeakers}"></td>
+						</tr>
+						</tbody>
+					</table>
+				</td>
+				<td th:if="${device.category.name=='mikrofon'}">
+					<table>
+						<thead>
+							<tr>
+								<th>Typ mikrofonu</th>
+								<th>Pasmo przenoszenia</th>
+								<th>Transmisja bezprzewodowa</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${device.audioDevice.microphoneType}"></td>
+                    			<td th:text="${device.audioDevice.frequencyResponse}"></td>
+                    			<td th:text="${device.audioDevice.wirelessTransmission}"></td>
+						</tr>
+						</tbody>
+					</table>
+				</td>
+				<td th:if="${device.category.name=='słuchawki'}">
+					<table>
+						<thead>
+							<tr>
+								<th>Typ słuchawek</th>
+								<th>Mikrofon</th>
+								<th>transmisja bezprzewodowa</th>
+								<th>Czas pracy</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${device.audioDevice.headphoneType}"></td>
+			                    <td th:text="${device.audioDevice.microphone}"></td>
+			                    <td th:text="${device.audioDevice.wirelessTransmission}"></td>
+			                    <td th:text="${device.audioDevice.workingTime}"></td>
+						</tr>
+						</tbody>
+					</table>
+				</td>
+				
+				<td>
+					<form th:action="@{/device/deleteDevice/{id}/delete(id=${device.id})}" method="post">
+						<button type="submit">Usuń</button>
+					</form>
+					<form th:action="@{/device/modify/{id}(id=${device.id})}" method="get">	
+					<button type="submit">Edytuj</button>
+					</form>
+				</td>
+			</tr>
+			
+            
+        </tbody>
+    </table>
