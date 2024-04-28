@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>krok czwarty</title>
+</head>
+<body>
+    <h2> Krok 4</h2>
+    <h3>Wybierz kto wypożycza</h3>
+    <form action="/addToDBFourthStep" method="post" th:object="${cartPersonCompanyDto}">
+        <div>
+            <select onchange="showFields()">
+            	<option disabled selected>Wybierz kto wypożycza</option>
+                <option value="person">Osoba fizyczna</option>
+                <option value="company">Firma</option>
+            </select>
+        </div>
+        <div id="newFields">
+
+        </div>
+        <div>
+            <button type="submit">Dalej</button>
+        </div>
+    </form>
+
+    <script>
+        function showFields(){
+            var selectedOption=document.querySelector('select').value;
+            var newFields=document.getElementById('newFields');
+            newFields.innerHTML='';
+            if(selectedOption==='person'){
+                newFields.innerHTML+='<label>Podaj dane osobowe</label>';
+                newFields.innerHTML+='<input type="text" name="firstName" placeholder="Imię"}">';
+                newFields.innerHTML+='<input type="text" name="surname" placeholder="Nazwisko">';
+                newFields.innerHTML+='<input type="tel" name="phoneNumber" placeholder="Numer telefonu">';
+                newFields.innerHTML+='<input type="text" name="peselNumber" placeholder="PESEL">';
+                newFields.innerHTML+=' <label> Podaj adres</label>';
+                newFields.innerHTML+='<input type="text" name="place" placeholder="Miejscowość">';
+                newFields.innerHTML+='<input type="text" name="street" placeholder="Ulica">';
+                newFields.innerHTML+='<input type="text" name="houseNumber" placeholder="Numer domu">';
+                newFields.innerHTML+='<input type="text" name="zipCode" placeholder="Kod pocztowy">';
+
+            }else{
+                newFields.innerHTML+='<label> Podaj dane firmy</label>';
+                newFields.innerHTML+='<input type="text" name="name" placeholder="Nazwa firmy">';
+                newFields.innerHTML+='<input type="text" name="companyNumber" placeholder="NIP">';
+                newFields.innerHTML+='<label> Podaj adres</label>';
+                newFields.innerHTML+='<input type="text" name="place" placeholder="Miejscowość">';
+                newFields.innerHTML+=' <input type="text" name="street" placeholder="Ulica">';
+                newFields.innerHTML+='<input type="text" name="buldingNumber" placeholder="Numer budynku">';
+                newFields.innerHTML+='<input type="text" name="zipCode" placeholder="Kod pocztowy">';
+            }
+        }
+    </script>
+</body>
+</html>

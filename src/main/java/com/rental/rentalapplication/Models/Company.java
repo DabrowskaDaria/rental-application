@@ -55,6 +55,17 @@ public class Company {
 		this.users = users;
 	}
 	
+	public Company(String name, String comnapyNumber, String place, String street, String buldingNumber,
+			String zipCode) {
+		super();
+		this.name = name;
+		this.comnapyNumber = comnapyNumber;
+		this.place = place;
+		this.street = street;
+		this.buldingNumber = buldingNumber;
+		this.zipCode = zipCode;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

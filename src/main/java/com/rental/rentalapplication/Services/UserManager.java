@@ -4,7 +4,7 @@ package com.rental.rentalapplication.Services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,14 +28,13 @@ public class UserManager {
 	@Autowired
 	private PersonRepository personRepo; 
 
-	@Autowired
-	private PasswordEncoder  passwordEncoder;
+	
 	
 	@Autowired
 	private AccountTypeRepository accountTypeRepo;
 	
 	public void addAccount(@ModelAttribute UserPersonDto userPersonDto) {
-		User user= new User(userPersonDto.getEmail(), passwordEncoder.encode(userPersonDto.getPassword()));
+		User user= new User(userPersonDto.getEmail(),userPersonDto.getPassword());
 		AccountType accountType=accountTypeRepo.findByName("Użytkownik");
 		user.setAccountType(accountType);
 		Person person= new Person(userPersonDto.getFirstName(), userPersonDto.getSurname(), userPersonDto.getPhoneNumber());

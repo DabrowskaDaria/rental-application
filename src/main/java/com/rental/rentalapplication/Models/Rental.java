@@ -41,13 +41,11 @@ public class Rental {
 	
 	@ManyToOne
 	@JoinColumn(name="fk_method_of_reception_id")
-	@NotNull
 	private MethodOfReception methodOfReception;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="fk_method_of_payment_id")
-	@NotNull
 	private MethodOfPayment methodOfPayment;
 	
 	@ManyToOne
@@ -61,10 +59,21 @@ public class Rental {
 	@OneToMany(mappedBy = "rental", cascade = CascadeType.ALL)
 	List<Invoice> invoices = new ArrayList<Invoice>();
 
-
 	public Rental() {
 		super();
 	}
+
+	public Rental(@NotNull LocalDate rentalStartDate, @NotNull LocalDate rentalEndDate,
+			@NotNull RentalStatus rentalStatus, User user) {
+		super();
+		this.rentalStartDate = rentalStartDate;
+		this.rentalEndDate = rentalEndDate;
+		this.rentalStatus = rentalStatus;
+		this.user = user;
+	}
+
+
+	
 
 
 	public Integer getId() {
