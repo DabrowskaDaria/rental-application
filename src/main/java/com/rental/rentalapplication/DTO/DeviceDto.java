@@ -8,8 +8,6 @@ import java.util.Map;
 import com.rental.rentalapplication.Models.Category;
 import com.rental.rentalapplication.Models.Connector;
 
-
-
 public class DeviceDto {
 
 	private String name;
@@ -107,7 +105,7 @@ public class DeviceDto {
 		return technicalDetails.get("screenSize");
 	}
 	
-	public int getRefreshRate() {
+	public Integer getRefreshRate() {
 		return Integer.parseInt(technicalDetails.get("refreshRate"));
 	}
 	
@@ -204,7 +202,5 @@ public class DeviceDto {
 	public String getOperatingSystem() {
 		return technicalDetails.get("operatingSystem");
 	}
-	
 
-	
 }

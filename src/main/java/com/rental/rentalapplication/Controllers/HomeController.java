@@ -169,7 +169,7 @@ public class HomeController {
 	
 	@PostMapping("/addToCart/{id}")
 	public String addToCart(@PathVariable Integer id) {
-		User user=userManager.getUser(4);
+		User user=userManager.getUser(1);
 		Cart cart =new Cart(user);
 		Device device=deviceManager.getDevice(id);
 		DeviceCart deviceCart= new DeviceCart(cart, device);
@@ -191,7 +191,7 @@ public class HomeController {
 	
 	@GetMapping("/showCart")
 	public String showCart(Model model) {
-		Cart cart=cartRepo.findById(6).get();
+		Cart cart=cartRepo.findById(1).get();
 		List<DeviceCart> devicesCarts= cart.getDeviceCart();
 		model.addAttribute("devicesCarts", devicesCarts);
 		return "cart/cart";

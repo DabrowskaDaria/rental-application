@@ -27,15 +27,16 @@
             <td>
 				<form th:action="@{/homePage/deleteDeviceFromCart/{id}(id=${deviceCart.id})}" method="post">	
 					<button type="submit">Usuń</button>
-					</form>	
+				</form>	
 			</td>
         </tr>
 
 		</tbody>
 		</table>
-		<form  method="post">	
+		<form th:action="@{/showCartRentalForm}" method="get">	
 			<button type="submit">Realizuj koszyk</button>
-		</form>	
+		</form>
+		
     </div>
 </body>
 </html>

@@ -53,6 +53,8 @@ public class DeviceManager {
 	@Autowired
 	private DeviceRepository deviceRepo;
 	
+	@Autowired
+	private ImageDisplayRepository imageDisplayRepo;
 
 	public void addDevice(@ModelAttribute DeviceDto deviceDto) {
 		
@@ -170,8 +172,10 @@ public class DeviceManager {
 	
 	public Device modifyDevice(@ModelAttribute DeviceDto deviceDto,@PathVariable Integer id)	{
 		Device device=deviceRepo.findById(id).get();
-		deviceDto.setName(device.getName());
-		deviceDto.setPrice(device.getPrice());
+		Integer imageDisplayId=device.getImageDisplay().getId();
+		ImageDisplay imageDisplay= imageDisplayRepo.findById(imageDisplayId).get();
+		imageDisplay.setScreenSize(deviceDto.getScreenSize());
+		imageDisplayRepo.save(imageDisplay);
 		return device;
 	}
 	

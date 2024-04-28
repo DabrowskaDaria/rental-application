@@ -6,75 +6,75 @@
     <title>Edytuj urządzenie</title>
 </head>
 <body>
-    <form action="/device/add" th:object="${device}" method="post">
+    <form th:action="@{/device/modify/{id}(id=${device.id})}" th:object="${device}" method="post">
             <input type="text" th:field="${device.name}">
             <input type="number" th:field="${device.price}">
         	<input type="number" th:field="${device.deposit}">
         	<textarea th:field="${device.description}"></textarea>
         	
         	<div th:if="${device.category.name=='telewizor'}">
-				<input type="text" th:field="${device.imageDisplay.screenSize}">
-				<input type="text" th:field="${device.imageDisplay.screenResolution}">
-				<input type="number" th:field="${device.imageDisplay.refreshRate}">
+				<input type="text" th:field="${device.imageDisplay.screenSize}" th:name="technicalDetails[screenSize]">
+				<input type="text" th:field="${device.imageDisplay.screenResolution}" th:name="technicalDetails[screenResolution]">
+				<input type="number" th:field="${device.imageDisplay.refreshRate}" th:name="technicalDetails[refreshRate]">
 				
 			</div>
 			<div th:if="${device.category.name=='monitor'}">
-				<input type="text" th:field="${device.imageDisplay.screenSize}">
-				<input type="text" th:field="${device.imageDisplay.screenResolution}">
-				<input type="number" th:field="${device.imageDisplay.refreshRate}">
+				<input type="text" th:field="${device.imageDisplay.screenSize}" name="technicalDetails[screenSize]">
+				<input type="text" th:field="${device.imageDisplay.screenResolution}" name="technicalDetails[screenResolution]">
+				<input type="number" th:field="${device.imageDisplay.refreshRate}" name="technicalDetails[refreshRate]">
 			</div>
 			<div th:if="${device.category.name=='ekran'}">
-				<input type="text" th:field="${device.imageDisplay.screenFormat}">
-				<input type="text" th:field="${device.imageDisplay.screenSize}">
-				<input type="text" th:field="${device.imageDisplay.activeSurface}">
+				<input type="text" th:field="${device.imageDisplay.screenFormat}" name="">
+				<input type="text" th:field="${device.imageDisplay.screenSize}" name="">
+				<input type="text" th:field="${device.imageDisplay.activeSurface}" name="">
 			</div>
-			<div th:if="${device.category.name=='projektor multimedialny'}">
-				<input type="text" th:field="${device.imageDisplay.matrixType}">
-				<input type="number" th:field="${device.imageDisplay.lampPower}">
-				<input type="text" th:field="${device.imageDisplay.screenResolution}">
+			<div th:if="${device.category.name=='projektor multimedialny'}" name="">
+				<input type="text" th:field="${device.imageDisplay.matrixType}" name="">
+				<input type="number" th:field="${device.imageDisplay.lampPower}" name="">
+				<input type="text" th:field="${device.imageDisplay.screenResolution}" name="">
 			</div>
            
             <div th:if="${device.category.name=='laptop'}">
-				<input type="text" th:field="${device.computer.operatingSystem}">
-				<input type="text" th:field="${device.computer.display}">
-				<input type="text" th:field="${device.computer.drive}">
-				<input type="text" th:field="${device.computer.graphicsCard}">
-				<input type="text" th:field="${device.computer.processor}">
-				<input type="number" th:field="${device.computer.ram}">
+				<input type="text" th:field="${device.computer.operatingSystem}" name="">
+				<input type="text" th:field="${device.computer.display}" name="">
+				<input type="text" th:field="${device.computer.drive}" name="">
+				<input type="text" th:field="${device.computer.graphicsCard}" name="">
+				<input type="text" th:field="${device.computer.processor}" name="">
+				<input type="number" th:field="${device.computer.ram}" name="">
 			</div>
 			<div th:if="${device.category.name=='tablet'}">
-				<input type="text" th:field="${device.computer.operatingSystem}">
-				<input type="text" th:field="${device.computer.display}">
-				<input type="text" th:field="${device.computer.drive}">
-				<input type="text" th:field="${device.computer.processor}">
-				<input type="number" th:field="${device.computer.ram}">
+				<input type="text" th:field="${device.computer.operatingSystem}" name="">
+				<input type="text" th:field="${device.computer.display}" name="">
+				<input type="text" th:field="${device.computer.drive}" name="">
+				<input type="text" th:field="${device.computer.processor}" name="">
+				<input type="number" th:field="${device.computer.ram}" name="">
 			</div>
-	        <div th:if="${device.category.name=='oświetlenie'}">
-				<input type="text" th:field="${device.lighting.deviceSize}">
-				<input type="number" th:field="${device.lighting.lampPower}">
-				<input type="text" th:field="${device.lighting.lightingColor}">
-				<input type="number" th:field="${device.lighting.powerConsumption}">
+	        <div th:if="${device.category.name=='oświetlenie'}" name="">
+				<input type="text" th:field="${device.lighting.deviceSize}" name="">
+				<input type="number" th:field="${device.lighting.lampPower}" name="">
+				<input type="text" th:field="${device.lighting.lightingColor}" name="">
+				<input type="number" th:field="${device.lighting.powerConsumption}" name="">
 			</div>
         	<div th:if="${device.category.name=='kamera'}">
-				<input type="text" th:field="${device.camera.imageStabilization}">
-				<input type="text" th:field="${device.camera.opticalZoom}">
-				<input type="text" th:field="${device.camera.resolution}">
+				<input type="text" th:field="${device.camera.imageStabilization}" name="">
+				<input type="text" th:field="${device.camera.opticalZoom}" name="">
+				<input type="text" th:field="${device.camera.resolution}" name="">
 			</div>
-			<div th:if="${device.category.name=='nagłośnienie'}">
-				<input type="text" th:field="${device.audioDevice.speakersPower}">
-				<input type="number" th:field="${device.audioDevice.numberOfspeakers}">
+			<div th:if="${device.category.name=='nagłośnienie'}" name="">
+				<input type="text" th:field="${device.audioDevice.speakersPower}" name="">
+				<input type="number" th:field="${device.audioDevice.numberOfspeakers}" name="">
 				
 			</div>
         	<div th:if="${device.category.name=='mikrofon'}">
-				<input type="text" th:field="${device.audioDevice.microphoneType}">
-				<input type="text" th:field="${device.audioDevice.frequencyResponse}">
-				<input type="text" th:field="${device.audioDevice.wirelessTransmission}">
+				<input type="text" th:field="${device.audioDevice.microphoneType}" name="">
+				<input type="text" th:field="${device.audioDevice.frequencyResponse}" name="">
+				<input type="text" th:field="${device.audioDevice.wirelessTransmission}" name="">
 			</div>
         	<div th:if="${device.category.name=='słuchawki'}">
-				<input type="text" th:field="${device.audioDevice.headphoneType}">
-				<input type="text" th:field="${device.audioDevice.microphone}">
-				<input type="text" th:field="${device.audioDevice.wirelessTransmission}">
-				<input type="number" th:field="${device.audioDevice.workingTime}">
+				<input type="text" th:field="${device.audioDevice.headphoneType}" name="">
+				<input type="text" th:field="${device.audioDevice.microphone}" name="">
+				<input type="text" th:field="${device.audioDevice.wirelessTransmission}" name="">
+				<input type="number" th:field="${device.audioDevice.workingTime}" name="">
 			</div>
          <button type="submit">Zatwierdź</button>
     </form>
