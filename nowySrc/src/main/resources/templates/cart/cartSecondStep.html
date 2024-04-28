@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Second step</title>
+</head>
+<body>
+    <h2>Krok drugi</h2>
+    <form action="/addToDBSecondStep" method="post" th:object="${cartMetodsDto}">
+        <div>
+        <label>Wybierz sposób odbioru: </label>
+            <select name="methodOfReception" th:field="*{methodsOfReception}">
+                <option th:each="methodOfReception : ${methodsOfReception}" th:value="${methodOfReception.id}" th:text="${methodOfReception.name}"></option>
+            </select>
+        </div>
+        <div>
+            <label>Wybierz sposób zapłaty:</label>
+            <select name="methodOfPayment" th:field="*{methodsOfPayment}">
+            <option th:each="methodOfPayment : ${methodsOfPayment}" th:value="${methodOfPayment.id}" th:text="${methodOfPayment.name}" selected> </option>
+            </select>
+        </div>
+        <div>
+           
+          <button type="submit">Dalej</button>
+        </div>
+    </form>
+</body>
+</html>

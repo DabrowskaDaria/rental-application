@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realizuj koszyk krok pierwszy</title>
+</head>
+<body>
+    <h2>Realizuj koszyk krok pierwszy</h2>
+    <form action="/addToDBFirstStep" method="post" th:object="${cartDataDto}">
+    <div>
+    	<label>Wybierz datę rozpoczęcia wypożyczenia</label>
+    	<input type="date" name="rentalStartDate">
+    </div>
+    
+	<div>
+		<label>Podaj datę zakończenia</label>
+    	<input type="date" name="rentalEndDate">
+	</div>
+    
+    <div>
+    	
+    	<button type="submit">Dalej</button>
+    </div>
+    </form>
+</body>
+</html>
